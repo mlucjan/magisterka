@@ -1,0 +1,10 @@
+Added Component: Designator=R4(402)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R5(402)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=NetR4_1 Pin=R4-1
+Added Pin To Net: NetName=VCC Pin=R4-2
+Added Pin To Net: NetName=NetR5_1 Pin=R5-1
+Added Pin To Net: NetName=VCC Pin=R5-2
+Added Member To Class: ClassName=uC_radio Member=Component R4 R
+Added Member To Class: ClassName=uC_radio Member=Component R5 R

@@ -1,0 +1,111 @@
+Removed Pin From Net: NetName=BT_MSP_RXD Pin=BT_CONN-2
+Removed Pin From Net: NetName=BT_MSP_TXD Pin=BT_CONN-4
+Removed Pin From Net: NetName=BQ_STAT1 Pin=BT_CONN-5
+Removed Pin From Net: NetName=BT_CTS Pin=BT_CONN-6
+Removed Pin From Net: NetName=BQ_STAT2 Pin=BT_CONN-7
+Removed Pin From Net: NetName=BT_RTS Pin=BT_CONN-8
+Removed Pin From Net: NetName=BQ_PG Pin=BT_CONN-9
+Removed Pin From Net: NetName=BT_RESET Pin=BT_CONN-10
+Removed Pin From Net: NetName=GND Pin=H1-1
+Removed Pin From Net: NetName=GND Pin=H1-3
+Removed Pin From Net: NetName=VCC Pin=H2-1
+Removed Pin From Net: NetName=GND Pin=H2-2
+Removed Pin From Net: NetName=GND Pin=H2-3
+Removed Pin From Net: NetName=LORA_MSP_RXD Pin=LORA_CONN-2
+Removed Pin From Net: NetName=LED1 Pin=LORA_CONN-3
+Removed Pin From Net: NetName=LORA_MSP_TXD Pin=LORA_CONN-4
+Removed Pin From Net: NetName=LED2 Pin=LORA_CONN-5
+Removed Pin From Net: NetName=LORA_CTS Pin=LORA_CONN-6
+Removed Pin From Net: NetName=LORA_RTS Pin=LORA_CONN-8
+Removed Pin From Net: NetName=LORA_RESET Pin=LORA_CONN-10
+Removed Member From Class: ClassName=radio Member=BT_CONN
+Removed Member From Class: ClassName=radio Member=H1
+Removed Member From Class: ClassName=radio Member=H2
+Removed Member From Class: ClassName=radio Member=LED1
+Removed Member From Class: ClassName=radio Member=LED2
+Removed Member From Class: ClassName=radio Member=LORA_CONN
+Removed Member From Class: ClassName=radio Member=R1
+Removed Member From Class: ClassName=radio Member=R2
+Change Component DesignItemId : Designator=BT_CONN Old DesignItemId=Header 5X2 New DesignItemId=Header 4X2
+Change Component Footprint: Designator=BT Old Footprint=BL652_Solder_PAD_P39 New Footprint=XCVR_BL652-SA-01
+Change Component Footprint: Designator=BT_CONN Old Footprint=HDR2X5 New Footprint=HDR2X4
+Change Component Comment : Designator=BT Old Comment=BL652 New Comment=BL652_Solder_PAD_P39
+Change Component Comment : Designator=BT_CONN Old Comment=Header 5X2 New Comment=Header 4X2
+Change Component Designator: OldDesignator=BT_CONN NewDesignator=MEMS_1
+Change Component Designator: OldDesignator=LORA_CONN NewDesignator=MEMS_2
+Change Component Designator: OldDesignator=U1 NewDesignator=BQ
+Change Component Description : Designator=MEMS_1 Old Description=Header, 5-Pin, Dual row New Description=Header, 4-Pin, Dual row
+Added Component: Designator=SBW_uC(HDR1X3)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=U1(RHA0040E_NV)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manufacturer"; Value = "Texas Instruments"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "MSP430FR2355TRHAR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "TYPE"; Value = "TYPE"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "Value"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VCC Pin=H1-1
+Added Pin To Net: NetName=GND Pin=MEMS_1-5
+Added Pin To Net: NetName=GND Pin=MEMS_1-7
+Added Pin To Net: NetName=GND Pin=SBW_uC-3
+Added Pin To Net: NetName=VCC Pin=U1-5
+Added Pin To Net: NetName=GND Pin=U1-6
+Added Pin To Net: NetName=BT_RESET Pin=U1-16
+Added Pin To Net: NetName=BT_RTS Pin=U1-17
+Added Pin To Net: NetName=BT_CTS Pin=U1-18
+Added Pin To Net: NetName=BT_MSP_TXD Pin=U1-19
+Added Pin To Net: NetName=BT_MSP_RXD Pin=U1-20
+Added Pin To Net: NetName=LORA_MSP_RXD Pin=U1-25
+Added Pin To Net: NetName=LORA_MSP_TXD Pin=U1-26
+Added Pin To Net: NetName=LORA_CTS Pin=U1-27
+Added Pin To Net: NetName=LORA_RTS Pin=U1-28
+Added Pin To Net: NetName=LED2 Pin=U1-31
+Added Pin To Net: NetName=LED1 Pin=U1-32
+Added Pin To Net: NetName=BQ_PG Pin=U1-35
+Added Pin To Net: NetName=BQ_STAT2 Pin=U1-36
+Added Pin To Net: NetName=BQ_STAT1 Pin=U1-37
+Added Pin To Net: NetName=LORA_RESET Pin=U1-38
+Added Pin To Net: NetName=GND Pin=U1-41
+Change Net Name : Old Net Name=NetC25_2 New Net Name=NetBQ_13
+Change Net Name : Old Net Name=NetR21_1 New Net Name=NetBQ_7
+Change Net Name : Old Net Name=NetR23_2 New Net Name=NetBQ_10
+Change Net Name : Old Net Name=NetR26_2 New Net Name=NetBQ_12
+Added Pin To Net: NetName=EXT_SPI_CLK Pin=H2-1
+Added Pin To Net: NetName=EXT_SPI_CLK Pin=U1-13
+Added Net: Name=EXT_SPI_CLK
+Added Pin To Net: NetName=EXT_SPI_MISO Pin=H2-3
+Added Pin To Net: NetName=EXT_SPI_MISO Pin=U1-11
+Added Net: Name=EXT_SPI_MISO
+Added Pin To Net: NetName=EXT_SPI_MOSI Pin=H2-2
+Added Pin To Net: NetName=EXT_SPI_MOSI Pin=U1-12
+Added Net: Name=EXT_SPI_MOSI
+Added Pin To Net: NetName=EXT_SPI_STE Pin=H1-3
+Added Pin To Net: NetName=EXT_SPI_STE Pin=U1-14
+Added Net: Name=EXT_SPI_STE
+Added Pin To Net: NetName=SBWTCK Pin=SBW_uC-1
+Added Pin To Net: NetName=SBWTCK Pin=U1-3
+Added Net: Name=SBWTCK
+Added Pin To Net: NetName=SBWTDIO Pin=SBW_uC-2
+Added Pin To Net: NetName=SBWTDIO Pin=U1-4
+Added Net: Name=SBWTDIO
+Added Pin To Net: NetName=SENS_SPI_CLK Pin=MEMS_1-4
+Added Pin To Net: NetName=SENS_SPI_CLK Pin=U1-1
+Added Net: Name=SENS_SPI_CLK
+Added Pin To Net: NetName=SENS_SPI_MISO Pin=MEMS_1-8
+Added Pin To Net: NetName=SENS_SPI_MISO Pin=U1-39
+Added Net: Name=SENS_SPI_MISO
+Added Pin To Net: NetName=SENS_SPI_MOSI Pin=MEMS_1-6
+Added Pin To Net: NetName=SENS_SPI_MOSI Pin=U1-40
+Added Net: Name=SENS_SPI_MOSI
+Added Pin To Net: NetName=SENS_SPI_STE Pin=MEMS_1-2
+Added Pin To Net: NetName=SENS_SPI_STE Pin=U1-2
+Added Net: Name=SENS_SPI_STE
+Added Pin To Net: NetName=XTAL0 Pin=U1-8
+Added Net: Name=XTAL0
+Added Pin To Net: NetName=XTAL1 Pin=U1-7
+Added Net: Name=XTAL1
+Added Class: Name=uC_radio
+Added Room: Name=uC_radio

@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=PS_VCC Pin=RADIO_CONN-1
+Removed Pin From Net: NetName=RADIO_SPI_MISO Pin=RADIO_CONN-2
+Removed Pin From Net: NetName=RADIO_SPI_MOSI Pin=RADIO_CONN-4
+Removed Pin From Net: NetName=RADIO_SPI_STE Pin=RADIO_CONN-6
+Removed Pin From Net: NetName=GND Pin=RADIO_CONN-7
+Removed Pin From Net: NetName=RADIO_SPI_CLK Pin=RADIO_CONN-8
+Added Pin To Net: NetName=GND Pin=RADIO_CONN-1
+Added Pin To Net: NetName=RADIO_SPI_CLK Pin=RADIO_CONN-2
+Added Pin To Net: NetName=RADIO_SPI_STE Pin=RADIO_CONN-4
+Added Pin To Net: NetName=RADIO_SPI_MOSI Pin=RADIO_CONN-6
+Added Pin To Net: NetName=PS_VCC Pin=RADIO_CONN-7
+Added Pin To Net: NetName=RADIO_SPI_MISO Pin=RADIO_CONN-8

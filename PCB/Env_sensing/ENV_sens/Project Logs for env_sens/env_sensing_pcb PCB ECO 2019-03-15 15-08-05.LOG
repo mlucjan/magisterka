@@ -1,0 +1,19 @@
+Removed Pin From Net: NetName=PS_VCC Pin=PS-1
+Removed Pin From Net: NetName=GND Pin=PS-2
+Removed Member From Class: ClassName=uC Member=PS
+Added Component: Designator=USB(USB_Micro-B)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manufacturer 1"; Value = "Molex Inc"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "SMD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SCDType"; Value = "undef"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "WM17142CT-ND"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=PS_VCC Pin=USB-1
+Added Pin To Net: NetName=GND Pin=USB-5
+Added Pin To Net: NetName=GND Pin=USB-SH
+Added Pin To Net: NetName=GND Pin=USB-SH
+Added Pin To Net: NetName=GND Pin=USB-SH
+Added Pin To Net: NetName=GND Pin=USB-SH
+Added Pin To Net: NetName=GND Pin=USB-SH
+Added Pin To Net: NetName=GND Pin=USB-SH
+Added Member To Class: ClassName=uC Member=Component USB USB Micro Type B

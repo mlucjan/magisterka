@@ -1,0 +1,10 @@
+Change Component Designator: OldDesignator=MEMS_1 NewDesignator=MEMS
+Added Component: Designator=RADIO_SW(DIPS-02)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=RADIO_SW-1
+Added Pin To Net: NetName=GND Pin=RADIO_SW-2
+Added Pin To Net: NetName=NetR4_1 Pin=RADIO_SW-4
+Added Net: Name=NetR4_1
+Added Pin To Net: NetName=NetR5_1 Pin=RADIO_SW-3
+Added Net: Name=NetR5_1
+Added Member To Class: ClassName=uC_radio Member=Component RADIO_SW DIPS-D02

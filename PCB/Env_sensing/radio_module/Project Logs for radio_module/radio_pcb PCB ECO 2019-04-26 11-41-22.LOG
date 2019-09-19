@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=RADIO_SEL2 Pin=U1-31
+Removed Pin From Net: NetName=RADIO_SEL1 Pin=U1-32
+Added Pin To Net: NetName=RADIO_SEL1 Pin=U1-31
+Added Pin To Net: NetName=RADIO_SEL2 Pin=U1-32
+Change Net Name : Old Net Name=RADIO_SEL1 New Net Name=RADIO_SEL2
+Change Net Name : Old Net Name=RADIO_SEL2 New Net Name=RADIO_SEL1

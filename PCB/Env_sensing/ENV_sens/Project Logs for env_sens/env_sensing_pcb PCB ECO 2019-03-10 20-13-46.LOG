@@ -1,0 +1,148 @@
+Added Component: Designator=LED1(603)
+Add component. Clean all parameters for all variants
+Added Component: Designator=LED2(603)
+Add component. Clean all parameters for all variants
+Added Component: Designator=LGHT1(DNP0006A)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Application_BuildNumber"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "CompType"; Value = "IC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Texas Instruments"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MountType"; Value = "SMT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "DNP0006A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "OPT3001DNP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PIN_COUNT"; Value = "7"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "Y"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "TYPE"; Value = "TYPE"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "Value"; VariantName = "[No Variations]"
+Added Component: Designator=MIC1(ICS-40730)
+Add component. Clean all parameters for all variants
+Added Component: Designator=PS(HDR1x2)
+Add component. Clean all parameters for all variants
+Added Component: Designator=(BME680)
+Add component. Clean all parameters for all variants
+Added Component: Designator=U1(PN80-L)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Datasheet_URL"; Value = "http://www.ti.com/lit/gpn/MSP430F6726"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FAMILY_NAME"; Value = "6 Series with LCD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "GENERIC_PART_NUMBER"; Value = "MSP430F6726"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "INDUSTRY_STD_PKG_TYPE"; Value = "LQFP"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Texas Instruments"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "msp430f6726_pn_80"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PACKAGE_DESIGNATOR"; Value = "PN"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PIN_COUNT"; Value = "80"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "Type"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "Value"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Vendor"; Value = "Texas Instruments"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=AGND Pin=MIC1-4
+Added Pin To Net: NetName=AGND Pin=U1-3
+Added Pin To Net: NetName=AGND Pin=U1-4
+Added Pin To Net: NetName=AGND Pin=U1-5
+Added Pin To Net: NetName=AGND Pin=U1-6
+Added Pin To Net: NetName=AGND Pin=U1-8
+Added Net: Name=AGND
+Added Pin To Net: NetName=AUXVCC3 Pin=U1-23
+Added Net: Name=AUXVCC3
+Added Pin To Net: NetName=AVCC Pin=U1-9
+Added Net: Name=AVCC
+Added Pin To Net: NetName=BME280_CSB Pin=-2
+Added Pin To Net: NetName=BME280_CSB Pin=U1-39
+Added Net: Name=BME280_CSB
+Added Pin To Net: NetName=BME280_SCK Pin=-4
+Added Pin To Net: NetName=BME280_SCK Pin=U1-38
+Added Net: Name=BME280_SCK
+Added Pin To Net: NetName=BME280_SDI Pin=-3
+Added Pin To Net: NetName=BME280_SDI Pin=U1-36
+Added Net: Name=BME280_SDI
+Added Pin To Net: NetName=BME280_SDO Pin=-5
+Added Pin To Net: NetName=BME280_SDO Pin=U1-35
+Added Net: Name=BME280_SDO
+Added Pin To Net: NetName=GND Pin=-1
+Added Pin To Net: NetName=GND Pin=-7
+Added Pin To Net: NetName=GND Pin=LED1-2
+Added Pin To Net: NetName=GND Pin=LED2-2
+Added Pin To Net: NetName=GND Pin=LGHT1-3
+Added Pin To Net: NetName=GND Pin=LGHT1-7
+Added Pin To Net: NetName=GND Pin=PS-2
+Added Pin To Net: NetName=GND Pin=U1-15
+Added Pin To Net: NetName=GND Pin=U1-16
+Added Pin To Net: NetName=GND Pin=U1-19
+Added Pin To Net: NetName=GND Pin=U1-26
+Added Pin To Net: NetName=GND Pin=U1-60
+Added Net: Name=GND
+Added Pin To Net: NetName=LED1 Pin=U1-49
+Added Net: Name=LED1
+Added Pin To Net: NetName=LED2 Pin=U1-50
+Added Net: Name=LED2
+Added Pin To Net: NetName=LGHT_ADD Pin=LGHT1-2
+Added Pin To Net: NetName=LGHT_ADD Pin=U1-31
+Added Net: Name=LGHT_ADD
+Added Pin To Net: NetName=LGHT_INT Pin=LGHT1-5
+Added Pin To Net: NetName=LGHT_INT Pin=U1-32
+Added Net: Name=LGHT_INT
+Added Pin To Net: NetName=LGHT_SCL Pin=LGHT1-4
+Added Pin To Net: NetName=LGHT_SCL Pin=U1-33
+Added Net: Name=LGHT_SCL
+Added Pin To Net: NetName=LGHT_SDA Pin=LGHT1-6
+Added Pin To Net: NetName=LGHT_SDA Pin=U1-34
+Added Net: Name=LGHT_SDA
+Added Pin To Net: NetName=MIC_OUT+ Pin=U1-2
+Added Net: Name=MIC_OUT+
+Added Pin To Net: NetName=MIC_OUT- Pin=U1-1
+Added Net: Name=MIC_OUT-
+Added Pin To Net: NetName=MSP_RXD Pin=U1-24
+Added Net: Name=MSP_RXD
+Added Pin To Net: NetName=MSP_TXD Pin=U1-25
+Added Net: Name=MSP_TXD
+Added Pin To Net: NetName=NetC2_2 Pin=U1-7
+Added Net: Name=NetC2_2
+Added Pin To Net: NetName=NetC8_2 Pin=U1-20
+Added Net: Name=NetC8_2
+Added Pin To Net: NetName=NetC20_2 Pin=MIC1-1
+Added Net: Name=NetC20_2
+Added Net: Name=NetC22_1
+Added Pin To Net: NetName=NetC22_2 Pin=MIC1-3
+Added Net: Name=NetC22_2
+Added Net: Name=NetC23_1
+Added Pin To Net: NetName=NetC23_2 Pin=MIC1-2
+Added Net: Name=NetC23_2
+Added Pin To Net: NetName=NetLED1_1 Pin=LED1-1
+Added Net: Name=NetLED1_1
+Added Pin To Net: NetName=NetLED2_1 Pin=LED2-1
+Added Net: Name=NetLED2_1
+Added Pin To Net: NetName=RST/SBWTDIO Pin=U1-80
+Added Net: Name=RST/SBWTDIO
+Added Pin To Net: NetName=TCK Pin=U1-79
+Added Net: Name=TCK
+Added Pin To Net: NetName=TDI Pin=U1-77
+Added Net: Name=TDI
+Added Pin To Net: NetName=TDO Pin=U1-76
+Added Net: Name=TDO
+Added Pin To Net: NetName=TEST/SBWTCK Pin=U1-75
+Added Net: Name=TEST/SBWTCK
+Added Pin To Net: NetName=TMS Pin=U1-78
+Added Net: Name=TMS
+Added Pin To Net: NetName=VASYS Pin=U1-10
+Added Net: Name=VASYS
+Added Pin To Net: NetName=VCC Pin=-6
+Added Pin To Net: NetName=VCC Pin=-8
+Added Pin To Net: NetName=VCC Pin=LGHT1-1
+Added Pin To Net: NetName=VCC Pin=PS-1
+Added Pin To Net: NetName=VCC Pin=U1-18
+Added Net: Name=VCC
+Added Pin To Net: NetName=VDSYS Pin=U1-17
+Added Pin To Net: NetName=VDSYS Pin=U1-59
+Added Net: Name=VDSYS
+Added Pin To Net: NetName=XIN Pin=U1-21
+Added Net: Name=XIN
+Added Pin To Net: NetName=XOUT Pin=U1-22
+Added Net: Name=XOUT
+Added Class: Name=env
+Added Class: Name=lght
+Added Class: Name=mic
+Added Class: Name=uC
+Added Room: Name=env
+Added Room: Name=lght
+Added Room: Name=mic
+Added Room: Name=uC

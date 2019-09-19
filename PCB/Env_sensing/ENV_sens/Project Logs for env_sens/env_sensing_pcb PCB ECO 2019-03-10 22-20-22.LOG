@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=VCC Pin=EXT_UART-1
+Removed Pin From Net: NetName=MSP_RXD Pin=EXT_UART-3
+Added Pin To Net: NetName=MSP_RXD Pin=EXT_UART-1
+Added Pin To Net: NetName=VCC Pin=EXT_UART-3

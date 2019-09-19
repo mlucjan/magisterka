@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [env_sens.PrjPCB]
+   Generated File[env_sens.TXT]
+   Generated File[env_sens.LDP]
+   Generated File[env_sens.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 13:19:15 On 2018-04-15

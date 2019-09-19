@@ -1,0 +1,4 @@
+Change Component Designator: OldDesignator=H1 NewDesignator=EXT_SPI1
+Change Component Designator: OldDesignator=H2 NewDesignator=EXT_SPI2
+Change Component Designator: OldDesignator=H4 NewDesignator=BATT
+Added Member To Class: ClassName=pwr_supply Member=Component BQ BQ24070

@@ -1,0 +1,5 @@
+Added Component: Designator=PS(HDR1x2)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=VCC Pin=PS-1
+Added Pin To Net: NetName=GND Pin=PS-2
+Added Member To Class: ClassName=uC Member=Component PS CONN 1x2

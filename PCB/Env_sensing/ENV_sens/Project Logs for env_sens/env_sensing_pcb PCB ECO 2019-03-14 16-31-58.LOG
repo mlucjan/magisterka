@@ -1,0 +1,26 @@
+Removed Pin From Net: NetName=EXT_GPIO_1 Pin=EXT_GPIO-1
+Removed Pin From Net: NetName=EXT_GPIO_2 Pin=EXT_GPIO-2
+Removed Pin From Net: NetName=EXT_GPIO_3 Pin=EXT_GPIO-3
+Removed Pin From Net: NetName=EXT_GPIO_4 Pin=EXT_GPIO-4
+Removed Pin From Net: NetName=MSP_TXD Pin=EXT_UART-1
+Removed Pin From Net: NetName=MSP_RXD Pin=EXT_UART-2
+Removed Pin From Net: NetName=VCC Pin=EXT_UART-3
+Removed Pin From Net: NetName=GND Pin=EXT_UART-4
+Removed Member From Class: ClassName=uC Member=EXT_GPIO
+Removed Member From Class: ClassName=uC Member=EXT_UART
+Change Component Comment : Designator=PS Old Comment=Header 2 New Comment=
+Change Component Comment : Designator=SBW Old Comment=Header 3 New Comment=
+Added Component: Designator=COMM_MOD(HDR2X4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=MSP_TXD Pin=COMM_MOD-1
+Added Pin To Net: NetName=EXT_GPIO_1 Pin=COMM_MOD-2
+Added Pin To Net: NetName=MSP_RXD Pin=COMM_MOD-3
+Added Pin To Net: NetName=EXT_GPIO_2 Pin=COMM_MOD-4
+Added Pin To Net: NetName=VCC Pin=COMM_MOD-5
+Added Pin To Net: NetName=EXT_GPIO_3 Pin=COMM_MOD-6
+Added Pin To Net: NetName=GND Pin=COMM_MOD-7
+Added Pin To Net: NetName=EXT_GPIO_4 Pin=COMM_MOD-8
+Added Member To Class: ClassName=uC Member=Component COMM_MOD 

@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=GND Pin=BT_CONN-4
+Removed Pin From Net: NetName=BT_MSP_TXD Pin=BT_CONN-5
+Removed Pin From Net: NetName=GND Pin=BT_CONN-6
+Removed Pin From Net: NetName=BT_RTS Pin=BT_CONN-7
+Removed Pin From Net: NetName=GND Pin=BT_CONN-8
+Added Pin To Net: NetName=BT_MSP_TXD Pin=BT_CONN-4
+Added Pin To Net: NetName=BQ_STAT1 Pin=BT_CONN-5
+Added Pin To Net: NetName=BQ_STAT2 Pin=BT_CONN-6
+Added Pin To Net: NetName=BQ_PG Pin=BT_CONN-7
+Added Pin To Net: NetName=BT_RTS Pin=BT_CONN-8

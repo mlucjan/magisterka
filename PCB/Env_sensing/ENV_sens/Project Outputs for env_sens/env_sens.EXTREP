@@ -1,0 +1,21 @@
+------------------------------------------------------------------------------------------
+Gerber File Extension Report For: env_sens.GBR   2018-04-15  13:18:52
+------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------
+Layer Extension     Layer Description                      
+------------------------------------------------------------------------------------------
+.GTL                Top Layer                               
+.GTS                Top Solder                              
+.GTO                Top Overlay                             
+.GTP                Top Paste                               
+.GPB                Bottom Pad Master                       
+.GBL                Bottom Layer                            
+.GPT                Top Pad Master                          
+.GKO                Keep-Out Layer                          
+.GBP                Bottom Paste                            
+.GBS                Bottom Solder                           
+.GBO                Bottom Overlay                          
+.GM1                Mechanical 1                            
+------------------------------------------------------------------------------------------

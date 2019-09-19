@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=MIC_OUT+ Pin=U1-1
+Removed Pin From Net: NetName=MIC_OUT- Pin=U1-2
+Added Pin To Net: NetName=MIC_OUT- Pin=U1-1
+Added Pin To Net: NetName=MIC_OUT+ Pin=U1-2

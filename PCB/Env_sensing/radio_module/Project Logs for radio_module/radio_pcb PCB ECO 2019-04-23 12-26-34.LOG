@@ -1,0 +1,17 @@
+Removed Member From Class: ClassName=uC_radio Member=BQ
+Added Component: Designator=CX3(402)
+Add component. Clean all parameters for all variants
+Added Component: Designator=CX4(402)
+Add component. Clean all parameters for all variants
+Added Component: Designator=X_32k(CRYST 32.768 kHz)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=CX3-1
+Added Pin To Net: NetName=XTAL1 Pin=CX3-2
+Added Pin To Net: NetName=GND Pin=CX4-1
+Added Pin To Net: NetName=XTAL0 Pin=CX4-2
+Added Pin To Net: NetName=XTAL1 Pin=X_32k-1
+Added Pin To Net: NetName=XTAL0 Pin=X_32k-2
+Added Member To Class: ClassName=uC_radio Member=Component CX3 12p
+Added Member To Class: ClassName=uC_radio Member=Component CX4 12p
+Added Member To Class: ClassName=uC_radio Member=Component U1 MSP430FR2155TRHA
+Added Member To Class: ClassName=uC_radio Member=Component X_32k CRYST_32k768

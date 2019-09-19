@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;sensing_module/communication&apos; to &apos;mcu_config&apos;" description="Rename resource &apos;communication&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="communication" name="mcu_config" stamp="1567438621116" updateReferences="true"/>
+</session>

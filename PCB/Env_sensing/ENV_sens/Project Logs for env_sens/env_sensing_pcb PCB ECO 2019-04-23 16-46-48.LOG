@@ -1,0 +1,26 @@
+Removed Pin From Net: NetName=GND Pin=LORA_CONN-1
+Removed Pin From Net: NetName=PS_VCC Pin=LORA_CONN-2
+Removed Pin From Net: NetName=GND Pin=LORA_CONN-6
+Removed Pin From Net: NetName=GND Pin=LORA_CONN-8
+Removed Member From Class: ClassName=uC Member=BT_CONN
+Change Component DesignItemId : Designator=LORA_CONN Old DesignItemId=Header 5X2 New DesignItemId=Header 4X2
+Change Component Footprint: Designator=LORA_CONN Old Footprint=HDR2X5 New Footprint=HDR2X4
+Change Component Comment : Designator=LORA_CONN Old Comment=Header 5X2 New Comment=Header 4X2
+Change Component Designator: OldDesignator=LORA_CONN NewDesignator=RADIO_CONN
+Change Component Description : Designator=RADIO_CONN Old Description=Header, 5-Pin, Dual row New Description=Header, 4-Pin, Dual row
+Added Pin To Net: NetName=PS_VCC Pin=RADIO_CONN-1
+Added Pin To Net: NetName=GND Pin=RADIO_CONN-3
+Added Pin To Net: NetName=GND Pin=RADIO_CONN-5
+Added Pin To Net: NetName=GND Pin=RADIO_CONN-7
+Added Pin To Net: NetName=RADIO_SPI_CLK Pin=RADIO_CONN-4
+Added Pin To Net: NetName=RADIO_SPI_CLK Pin=U1-37
+Added Net: Name=RADIO_SPI_CLK
+Added Pin To Net: NetName=RADIO_SPI_MISO Pin=RADIO_CONN-8
+Added Pin To Net: NetName=RADIO_SPI_MISO Pin=U1-24
+Added Net: Name=RADIO_SPI_MISO
+Added Pin To Net: NetName=RADIO_SPI_MOSI Pin=RADIO_CONN-6
+Added Pin To Net: NetName=RADIO_SPI_MOSI Pin=U1-25
+Added Net: Name=RADIO_SPI_MOSI
+Added Pin To Net: NetName=RADIO_SPI_STE Pin=RADIO_CONN-2
+Added Pin To Net: NetName=RADIO_SPI_STE Pin=U1-40
+Added Net: Name=RADIO_SPI_STE

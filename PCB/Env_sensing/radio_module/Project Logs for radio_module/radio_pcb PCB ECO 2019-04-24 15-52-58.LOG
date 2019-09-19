@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=PS_VCC Pin=MEMS_1-1
+Removed Pin From Net: NetName=SENS_SPI_STE Pin=MEMS_1-2
+Removed Pin From Net: NetName=GND Pin=MEMS_1-3
+Removed Pin From Net: NetName=SENS_SPI_CLK Pin=MEMS_1-4
+Removed Pin From Net: NetName=GND Pin=MEMS_1-5
+Removed Pin From Net: NetName=SENS_SPI_MOSI Pin=MEMS_1-6
+Removed Pin From Net: NetName=GND Pin=MEMS_1-7
+Removed Pin From Net: NetName=SENS_SPI_MISO Pin=MEMS_1-8
+Added Pin To Net: NetName=SENS_SPI_CLK Pin=MEMS_1-1
+Added Pin To Net: NetName=GND Pin=MEMS_1-2
+Added Pin To Net: NetName=SENS_SPI_STE Pin=MEMS_1-3
+Added Pin To Net: NetName=GND Pin=MEMS_1-4
+Added Pin To Net: NetName=SENS_SPI_MOSI Pin=MEMS_1-5
+Added Pin To Net: NetName=GND Pin=MEMS_1-6
+Added Pin To Net: NetName=SENS_SPI_MISO Pin=MEMS_1-7
+Added Pin To Net: NetName=PS_VCC Pin=MEMS_1-8

@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=VCC Pin=COMM_MOD-5
+Removed Pin From Net: NetName=VCC Pin=PS-1
+Added Component: Designator=STAB(WSON-6)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=VCC Pin=STAB-1
+Added Pin To Net: NetName=GND Pin=STAB-2
+Added Pin To Net: NetName=GND Pin=STAB-5
+Added Pin To Net: NetName=GND Pin=STAB-7
+Added Pin To Net: NetName=PS_VCC Pin=COMM_MOD-5
+Added Pin To Net: NetName=PS_VCC Pin=PS-1
+Added Pin To Net: NetName=PS_VCC Pin=STAB-4
+Added Pin To Net: NetName=PS_VCC Pin=STAB-6
+Added Net: Name=PS_VCC
+Added Member To Class: ClassName=uC Member=Component STAB LP5912

@@ -1,0 +1,14 @@
+[ProjectGroup]
+Version=1.0
+[Project1]
+ProjectPath=ENV_sens\env_sens.PrjPCB
+[Project2]
+ProjectPath=radio_module\radio_module.PrjPcb
+[Project3]
+ProjectPath=env_sens_lib\env_sens.LibPkg
+[Project4]
+ProjectPath=WiMOD_AltiumModulesLibs_V1_9\WiMOD_Modules.LibPkg
+[Project5]
+ProjectPath=pass_comp\pass_comp.LibPkg
+[Project6]
+ProjectPath=F:\altium_ionis\ionis.LibPkg

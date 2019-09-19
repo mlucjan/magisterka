@@ -1,0 +1,6 @@
+Added Pin To Net: NetName=BQ_PG Pin=U1-47
+Added Net: Name=BQ_PG
+Added Pin To Net: NetName=BQ_STAT1 Pin=U1-49
+Added Net: Name=BQ_STAT1
+Added Pin To Net: NetName=BQ_STAT2 Pin=U1-48
+Added Net: Name=BQ_STAT2

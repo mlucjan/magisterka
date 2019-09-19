@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=RADIO_SPI_STE Pin=RADIO_CONN-2
+Removed Pin From Net: NetName=RADIO_SPI_CLK Pin=RADIO_CONN-4
+Removed Pin From Net: NetName=RADIO_SPI_MOSI Pin=RADIO_CONN-6
+Removed Pin From Net: NetName=RADIO_SPI_MISO Pin=RADIO_CONN-8
+Added Pin To Net: NetName=RADIO_SPI_MISO Pin=RADIO_CONN-2
+Added Pin To Net: NetName=RADIO_SPI_MOSI Pin=RADIO_CONN-4
+Added Pin To Net: NetName=RADIO_SPI_STE Pin=RADIO_CONN-6
+Added Pin To Net: NetName=RADIO_SPI_CLK Pin=RADIO_CONN-8
+Added Member To Class: ClassName=uC Member=Component RADIO_CONN Header 4X2

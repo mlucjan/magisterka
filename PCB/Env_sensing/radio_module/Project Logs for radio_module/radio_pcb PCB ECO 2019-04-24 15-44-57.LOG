@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=GND Pin=MEMS_2-1
+Removed Pin From Net: NetName=GND Pin=MEMS_2-7
+Removed Pin From Net: NetName=GND Pin=MEMS_2-9
+Removed Member From Class: ClassName=uC_radio Member=MEMS_2

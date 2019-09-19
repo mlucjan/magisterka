@@ -1,0 +1,47 @@
+Added Component: Designator=Cb2(603)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Con1(IPEX)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Con2(IPEX)
+Add component. Clean all parameters for all variants
+Added Component: Designator=LoRa(RN2483)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Rb1(603)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=VCC Pin=Cb2-1
+Added Pin To Net: NetName=NetBT_26 Pin=Cb2-2
+Added Pin To Net: NetName=NetCon1_1 Pin=Con1-1
+Added Pin To Net: NetName=GND Pin=Con1-2
+Added Pin To Net: NetName=GND Pin=Con1-3
+Added Pin To Net: NetName=NetCon2_1 Pin=Con2-1
+Added Pin To Net: NetName=GND Pin=Con2-2
+Added Pin To Net: NetName=GND Pin=Con2-3
+Added Pin To Net: NetName=GND Pin=LoRa-1
+Added Pin To Net: NetName=LORA_RTS Pin=LoRa-2
+Added Pin To Net: NetName=LORA_CTS Pin=LoRa-3
+Added Pin To Net: NetName=LORA_MSP_RXD Pin=LoRa-6
+Added Pin To Net: NetName=LORA_MSP_TXD Pin=LoRa-7
+Added Pin To Net: NetName=GND Pin=LoRa-8
+Added Pin To Net: NetName=GND Pin=LoRa-11
+Added Pin To Net: NetName=VCC Pin=LoRa-12
+Added Pin To Net: NetName=GND Pin=LoRa-20
+Added Pin To Net: NetName=GND Pin=LoRa-21
+Added Pin To Net: NetName=GND Pin=LoRa-22
+Added Pin To Net: NetName=NetCon2_1 Pin=LoRa-23
+Added Pin To Net: NetName=GND Pin=LoRa-24
+Added Pin To Net: NetName=NetCon1_1 Pin=LoRa-25
+Added Pin To Net: NetName=GND Pin=LoRa-26
+Added Pin To Net: NetName=GND Pin=LoRa-27
+Added Pin To Net: NetName=GND Pin=LoRa-28
+Added Pin To Net: NetName=LORA_RESET Pin=LoRa-32
+Added Pin To Net: NetName=GND Pin=LoRa-33
+Added Pin To Net: NetName=VCC Pin=LoRa-34
+Added Pin To Net: NetName=GND Pin=LoRa-41
+Added Pin To Net: NetName=GND Pin=LoRa-47
+Added Pin To Net: NetName=GND Pin=Rb1-1
+Added Pin To Net: NetName=NetBT_28 Pin=Rb1-2
+Added Member To Class: ClassName=radio Member=Component Cb2 1u
+Added Member To Class: ClassName=radio Member=Component Con1 RFL
+Added Member To Class: ClassName=radio Member=Component Con2 RFH
+Added Member To Class: ClassName=radio Member=Component LoRa LORA module
+Added Member To Class: ClassName=radio Member=Component Rb1 R
