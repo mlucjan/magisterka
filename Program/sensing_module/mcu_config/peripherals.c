@@ -4,11 +4,12 @@ void init_gpio(){
 
     //OPT3001 ADDR pin
     GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN6);
-    GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN6); //sets OPT3001 I2C address to 0b1000100
-                                                     //output high => 0b1000101
+    GPIO_setOutputHighOnPin(GPIO_PORT_P1, GPIO_PIN6); //sets OPT3001 I2C address to 0b1000101
 
     //OPT3001 INT pin
     GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN7);
+    GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN7); //to receive interrupts from OPT3001
+    GPIO_selectInterruptEdge(GPIO_PORT_P1, GPIO_PIN7, GPIO_HIGH_TO_LOW_TRANSITION);
 
     //BME680 SPI CSB pin
     GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN6);
@@ -55,7 +56,7 @@ void init_sdc(){
 
 }
 
-void init_radio_spi(SPI_mode mode){
+void init_radio_spi(radio_SPI_mode mode){
 
     GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1,
                                                GPIO_PIN4 + GPIO_PIN5);
@@ -124,7 +125,7 @@ void init_bme680_spi(){
 
 }
 
-void init_spi(SPI_mode radio_spi_mode){
+void init_spi(radio_SPI_mode radio_spi_mode){
 
     init_radio_spi(radio_spi_mode);
     init_bme680_spi();
@@ -139,14 +140,14 @@ void init_i2c(){
     EUSCI_B_I2C_initMasterParam param = {0};
     param.selectClockSource = EUSCI_B_I2C_CLOCKSOURCE_SMCLK;
     param.i2cClk = UCS_getSMCLK();
-    param.dataRate = EUSCI_B_I2C_SET_DATA_RATE_400KBPS;
+    param.dataRate = EUSCI_B_I2C_SET_DATA_RATE_100KBPS;
     param.byteCounterThreshold = 0;
     param.autoSTOPGeneration = EUSCI_B_I2C_NO_AUTO_STOP;
     EUSCI_B_I2C_initMaster(EUSCI_B0_BASE, &param);
 
     //Specify slave address
     EUSCI_B_I2C_setSlaveAddress(EUSCI_B0_BASE,
-            OPT3001_I2C_ADDRESS
+                                OPT3001_I2C_ADDRESS
             );
 
     //Set Master in transmit mode

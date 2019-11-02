@@ -5,14 +5,14 @@
 
 typedef enum
 {
-    MASTER,
-    SLAVE
-}SPI_mode;
+    MASTER, //radio module is a slave
+    SLAVE //radio module is a master
+}radio_SPI_mode;
 
 #define RADIO_SPI_CLK 500000 //desired SPI clock speed for communication with radio module
 #define BME_SPI_CLK 500000 //desired SPI clock speed for communication with BME680
-#define OPT3001_I2C_ADDRESS  0x44 //0b1000100 => 0x44
-                                   //refer to init_gpio() in peripherals.c file
+#define OPT3001_I2C_ADDRESS  0x45 //0b1000101 => 0x45
+                                  //refer to init_gpio() in peripherals.c file
 
 void init_gpio();
 void init_sdc();

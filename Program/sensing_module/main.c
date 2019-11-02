@@ -11,6 +11,9 @@ uint32_t minResult = 0x00FFFFFF;
 uint16_t timerOverflowCounter = 0;
 uint16_t maxTimerOverflows = 10; //12MHz clock + divider(2) -> timer overflows in ~11ms
 
+uint16_t wynik;
+float lux_result = 0;
+
 void setup(){
     // stop watchdog
     WDT_A_hold(WDT_A_BASE);
@@ -19,21 +22,43 @@ void setup(){
     init_gpio();
     init_sdc();
     init_spi(SLAVE); //sensing module is a slave in the radio<->sensing SPI connection
+                                    //BME680 is always a slave
     init_i2c();
 
-    //Start timer in continuous mode sourced by SMCLK
-    Timer_A_clearTimerInterrupt(TIMER_A1_BASE);
-    Timer_A_initContinuousModeParam param = {0};
-    param.clockSource = TIMER_A_CLOCKSOURCE_SMCLK;
-    param.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_2;
-    param.timerInterruptEnable_TAIE = TIMER_A_TAIE_INTERRUPT_ENABLE;
-    param.timerClear = TIMER_A_DO_CLEAR;
-    param.startTimer = true;
+//    // Setup P2.0 UCB0SCL, P2.1 UCB0SDA
+//    P2SEL |= BIT0 | BIT1;                             // Set P2.0,P2.1 to UCB0SCL, UCB0SDA
+//
+//    // Setup eUSCI_B0
+//    UCB0CTLW0 |= UCSWRST;                             // Enable SW reset
+//    UCB0CTLW0 |= UCMST | UCMODE_3 | UCSSEL_2;         // I2C Master, use SMCLK
+//
+//    UCB0BRW_L = 120;                                   // fSCL = SMCLK/120 = ~100kHz
+//    UCB0BRW_H = 0;
+//    UCB0I2CSA = 0x48;                                 // Slave Address is 048h
+//    UCB0CTLW0 &= ~UCSWRST;                            // Clear SW reset, resume operation
+//    UCB0IE |= UCTXIE0;                                // Enable TX interrupt
 
-    //start mic measurement
-    timerRunning = 0x01;
-    Timer_A_initContinuousMode(TIMER_A1_BASE, &param);
-    SD24_B_startConverterConversion(SD24_BASE, 0);
+    _enable_interrupt();
+
+    while(1){
+         wynik = opt3001_register_read(CONFIG_REG_ADDRESS);
+    }
+
+//    opt3001_default_init(); //poki co nie dziala
+
+    //Start timer in continuous mode sourced by SMCLK
+//    Timer_A_clearTimerInterrupt(TIMER_A1_BASE);
+//    Timer_A_initContinuousModeParam param = {0};
+//    param.clockSource = TIMER_A_CLOCKSOURCE_SMCLK;
+//    param.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_2;
+//    param.timerInterruptEnable_TAIE = TIMER_A_TAIE_INTERRUPT_ENABLE;
+//    param.timerClear = TIMER_A_DO_CLEAR;
+//    param.startTimer = true;
+
+//    start mic measurement
+//    timerRunning = 0x01;
+//    Timer_A_initContinuousMode(TIMER_A1_BASE, &param);
+//    SD24_B_startConverterConversion(SD24_BASE, 0);
 }
 
 void main (void)
@@ -41,21 +66,49 @@ void main (void)
     setup();
 
     while(1){
-        if(timerRunning == 0x00){
-
-            SD24_B_stopConverterConversion(SD24_BASE, 0);
-
-            //TODO: save maxResult and minResult somewhere else or send them to the radio module
-
-            timerRunning = 0x01;
-            minResult = 0x00FFFFFF;
-            maxResult = 0;
-            Timer_A_startCounter(TIMER_A1_BASE, TIMER_A_CONTINUOUS_MODE);
-            SD24_B_startConverterConversion(SD24_BASE, 0);
-        }
+//        if(timerRunning == 0x00){
+//
+//            SD24_B_stopConverterConversion(SD24_BASE, 0);
+//
+//            //TODO: save maxResult and minResult somewhere else or send them to the radio module
+//
+//            timerRunning = 0x01;
+//            minResult = 0x00FFFFFF;
+//            maxResult = 0;
+//            Timer_A_startCounter(TIMER_A1_BASE, TIMER_A_CONTINUOUS_MODE);
+//            SD24_B_startConverterConversion(SD24_BASE, 0);
+//        }
 
     }
 
+}
+//******************************************************************************
+//
+//This is the GPIO Port 1 interrupt vector service routine. (OPT3001 INT pin)
+//
+//******************************************************************************
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+#pragma vector=PORT1_VECTOR
+__interrupt
+#elif defined(__GNUC__)
+__attribute__((interrupt(PORT1_VECTOR)))
+#endif
+void PORT1_ISR (void)
+{
+    switch ( __even_in_range(P1IV,P1IV_P1IFG7) ){
+        case P1IV_NONE: break;                          //No interrupt
+        case P1IV_P1IFG1: break;                          //Port P1.1
+        case P1IV_P1IFG0: break;                          //Port P1.0
+        case P1IV_P1IFG2: break;                          //Port P1.2
+        case P1IV_P1IFG3: break;                          //Port P1.3
+        case P1IV_P1IFG4: break;                          //Port P1.4
+        case P1IV_P1IFG5: break;                          //Port P1.5
+        case P1IV_P1IFG6: break;                          //Port P1.6
+        case P1IV_P1IFG7:                                 //Port P1.7
+            lux_result = opt3001_get_lux_result();
+            break;
+        default: break;
+    }
 }
 
 //******************************************************************************

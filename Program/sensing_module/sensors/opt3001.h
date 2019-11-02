@@ -23,7 +23,7 @@
 #define REGISTER_WRITE 1
 
 //Configuration register field names
-enum CONFIG_FIELD {
+typedef enum {
     RANGE_NUMBER,
     CONVERSION_TIME,
     MODE_OF_CONVERSION,
@@ -34,7 +34,7 @@ enum CONFIG_FIELD {
     INT_POLARITY,
     MASK_EXPONENT,
     FAULT_COUNT,
-};
+}CONFIG_FIELD;
 
 //value for error handling in opt3001_get_status()
 #define GET_STATUS_FAIL 0xf
@@ -63,7 +63,7 @@ enum CONFIG_FIELD {
 #define FAULT_COUNT_8 4
 
 //Configuration register structure-----------
-union configRegister{
+typedef union {
     uint16_t value;
     struct  {
       uint16_t rn : 4; //range number field (R/W)
@@ -78,24 +78,24 @@ union configRegister{
       uint16_t me : 1; //mask exponent field (R/W)
       uint16_t fc : 2; //fault count field (R/W)
     };
-};
+}configRegister;
 
 //Result register structure-----------------
-union resultRegister{
+typedef union {
     uint16_t value;
     struct  {
       uint16_t exponent : 4; //exponent (R)
       uint16_t fractResult : 12; //fractional result (R)
     };
-};
+}resultRegister;
 
 //Functions------------------------------------
 uint16_t opt3001_register_read(uint8_t address);
 void opt3001_register_write(uint8_t address, uint16_t data);
 float opt3001_get_lux_result();
-//union configRegister opt3001_get_config_register();
-void opt3001_init();
-void opt3001_custom_init(union configRegister cr);
-uint8_t opt3001_get_status(enum CONFIG_FIELD cf);
+configRegister opt3001_get_config_register();
+void opt3001_default_init();
+void opt3001_custom_init(configRegister cr);
+uint8_t opt3001_get_status(CONFIG_FIELD cf);
 
 #endif /* SENSORS_OPT3001_H_ */

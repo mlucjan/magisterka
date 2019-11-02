@@ -114,5 +114,6 @@ SUBDIRS := \
 . \
 driverlib/MSP430F5xx_6xx \
 mcu_config \
+sensors/bme680 \
 sensors \
 
