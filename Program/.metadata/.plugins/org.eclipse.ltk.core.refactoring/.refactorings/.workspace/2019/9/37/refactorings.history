@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;eusci_b_i2c_ex2_masterRxSingle&apos;" deleteContents="true" description="Delete resource &apos;eusci_b_i2c_ex2_masterRxSingle&apos;" element1="/eusci_b_i2c_ex2_masterRxSingle" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1568051188179"/>
-</session>
