@@ -1,0 +1,89 @@
+# FIXED
+
+main.obj: ../main.c
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/inc/hw_memmap.h
+main.obj: /Applications/ti/ccs900/ccs/ccs_base/msp430/include/msp430.h
+main.obj: /Applications/ti/ccs900/ccs/ccs_base/msp430/include/msp430fr2155.h
+main.obj: /Applications/ti/ccs900/ccs/ccs_base/msp430/include/in430.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/intrinsics.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/intrinsics_legacy_undefs.h
+main.obj: /Applications/ti/ccs900/ccs/ccs_base/msp430/include/legacy.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/stdint.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/_stdint40.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/sys/stdint.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/sys/cdefs.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/sys/_types.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/machine/_types.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/machine/_stdint.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/sys/_stdint.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/stdbool.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/rtc.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/sysctl.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_i2c.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/crc.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/lcd_e.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/cs.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/ecomp.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/mpy32.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/framctl.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/adc.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/sac.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/sfr.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/wdt_a.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/icc.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/timer_a.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/pmm.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_a_uart.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/gpio.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/tlv.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/tia.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_a_spi.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/timer_b.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_spi.h
+main.obj: ../mcu_config/peripherals.h
+main.obj: /Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h
+
+../main.c: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/inc/hw_memmap.h: 
+/Applications/ti/ccs900/ccs/ccs_base/msp430/include/msp430.h: 
+/Applications/ti/ccs900/ccs/ccs_base/msp430/include/msp430fr2155.h: 
+/Applications/ti/ccs900/ccs/ccs_base/msp430/include/in430.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/intrinsics.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/intrinsics_legacy_undefs.h: 
+/Applications/ti/ccs900/ccs/ccs_base/msp430/include/legacy.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/stdint.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/_stdint40.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/sys/stdint.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/sys/cdefs.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/sys/_types.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/machine/_types.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/machine/_stdint.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/sys/_stdint.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/stdbool.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/rtc.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/sysctl.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_i2c.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/crc.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/lcd_e.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/cs.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/ecomp.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/mpy32.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/framctl.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/adc.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/sac.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/sfr.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/wdt_a.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/icc.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/timer_a.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/pmm.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_a_uart.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/gpio.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/tlv.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/tia.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_a_spi.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/timer_b.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_spi.h: 
+../mcu_config/peripherals.h: 
+/Users/michal/OneDrive//\ -//\ Politechnika//\ Warszawska/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h: 

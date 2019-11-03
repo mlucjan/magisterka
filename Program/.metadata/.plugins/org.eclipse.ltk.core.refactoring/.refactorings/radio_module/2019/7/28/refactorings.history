@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;radio_module/peripherals&apos; to &apos;peripherals.h&apos;" description="Rename resource &apos;peripherals&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="peripherals" name="peripherals.h" stamp="1562695305908" updateReferences="true"/>
-</session>
