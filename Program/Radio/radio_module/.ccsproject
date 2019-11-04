@@ -14,5 +14,5 @@
 	<origin value="/Users/michal/ti/msp430ware_3_80_07_00/driverlib/examples/MSP430FR2xx_4xx/00_emptyProject/CCS/emptyProject.projectspec"/>
 	<filesToOpen value=""/>
 	<connection value="common/targetdb/connections/TIMSP430-USB.xml"/>
-	<isTargetManual value="false"/>
+	<isTargetManual value="true"/>
 </projectOptions>

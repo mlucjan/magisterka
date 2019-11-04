@@ -35,9 +35,9 @@ void setup(){
 
     _enable_interrupt();
 
-//    while(1){
-//         wynik = opt3001_register_read(CONFIG_REG_ADDRESS);
-//    }
+    while(1){
+         wynik = opt3001_register_read(MAN_ID_REG_ADDRESS);
+    }
 
 //    opt3001_default_init(); //poki co nie dziala
 

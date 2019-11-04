@@ -27,7 +27,7 @@ uint16_t opt3001_register_read(uint8_t reg_address){
 //    while(rxStepCtr != 2);
     int i = 0;
     for(i=0; i<10; i++){
-        if(rxStepCtr == 2){
+        if(rxStepCtr == 3){
             return (uint16_t)rxData[0]<<8 | rxData[1];
         }
         __delay_cycles(12000);
