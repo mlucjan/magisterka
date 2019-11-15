@@ -3,12 +3,16 @@
 #include "sensors/mic.h"
 #include "mcu_config/peripherals.h"
 #include "sensors/opt3001.h"
+#include "sensors/bme680/bsec_msp430_implementation.h"
 
-//unsigned char timerRunning = 0x00; //mic timer running flag
 uint16_t wynik;
 uint8_t luxMeasReady = 0x00;
 float luxResult = 0;
 micMeasResult micResult;
+configRegister cr1, cr2;
+return_values_init bsec_init_ret_val;
+//zmienna do timestampa bsec
+//int64_t system_current_time = 0;
 void setup(){
     // stop watchdog
     WDT_A_hold(WDT_A_BASE);
@@ -19,27 +23,12 @@ void setup(){
     init_spi(SLAVE); //sensing module is a slave in the radio<->sensing SPI connection
                                     //BME680 is always a slave
     init_i2c();
-
-//    // Setup P2.0 UCB0SCL, P2.1 UCB0SDA
-//    P2SEL |= BIT0 | BIT1;                             // Set P2.0,P2.1 to UCB0SCL, UCB0SDA
-//
-//    // Setup eUSCI_B0
-//    UCB0CTLW0 |= UCSWRST;                             // Enable SW reset
-//    UCB0CTLW0 |= UCMST | UCMODE_3 | UCSSEL_2;         // I2C Master, use SMCLK
-//
-//    UCB0BRW_L = 120;                                   // fSCL = SMCLK/120 = ~100kHz
-//    UCB0BRW_H = 0;
-//    UCB0I2CSA = 0x48;                                 // Slave Address is 048h
-//    UCB0CTLW0 &= ~UCSWRST;                            // Clear SW reset, resume operation
-//    UCB0IE |= UCTXIE0;                                // Enable TX interrupt
-
     _enable_interrupt();
-
-    while(1){
-         wynik = opt3001_register_read(MAN_ID_REG_ADDRESS);
-    }
-
-//    opt3001_default_init(); //poki co nie dziala
+//    cr1 = opt3001_get_config_register();
+    opt3001_default_init();
+    bsec_init_ret_val = bsec_iot_init(BSEC_SAMPLE_RATE_LP, 0.0f, bus_write, bus_read, sleep, state_load, config_load);
+//    __delay_cycles(12000);
+//    cr2 = opt3001_get_config_register();
 
 }
 
@@ -52,16 +41,18 @@ void main (void)
     setup();
 
     while(1){
-        if(get_mic_status() == DONE){
-            micResult = get_mic_result();
-        }
-        if(luxMeasReady){
-            luxResult = opt3001_get_lux_result();
-            luxMeasReady = 0x00;
-        }
-        /*
-         * Obsluga BME680
-         * */
+//        if(get_mic_status() == DONE){
+//            micResult = get_mic_result();
+//        }
+//        if(opt3001_get_status(CONVERSION_READY)){
+//            luxResult = opt3001_get_lux_result();
+//            luxMeasReady = 0x00;
+//        }
+        __delay_cycles(12000);
+
+        bsec_iot_service(sleep, get_timestamp_us, output_ready, state_save, 10000);
+
+
     }
 
 }

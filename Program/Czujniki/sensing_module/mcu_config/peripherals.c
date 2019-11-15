@@ -160,14 +160,12 @@ void init_i2c(){
 
     EUSCI_B_I2C_clearInterrupt(EUSCI_B0_BASE,
                                EUSCI_B_I2C_RECEIVE_INTERRUPT0 +
-                               EUSCI_B_I2C_TRANSMIT_INTERRUPT0 +
-                               EUSCI_B_I2C_NAK_INTERRUPT
+                               EUSCI_B_I2C_TRANSMIT_INTERRUPT0
                                );
 
     //Enable master Receive and Transmit interrupt
     EUSCI_B_I2C_enableInterrupt(EUSCI_B0_BASE,
                                 EUSCI_B_I2C_RECEIVE_INTERRUPT0 +
-                                EUSCI_B_I2C_TRANSMIT_INTERRUPT0 +
-                                EUSCI_B_I2C_NAK_INTERRUPT
+                                EUSCI_B_I2C_TRANSMIT_INTERRUPT0
                                 );
 }
