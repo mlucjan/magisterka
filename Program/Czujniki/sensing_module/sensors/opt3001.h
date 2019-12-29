@@ -97,8 +97,8 @@ typedef union {
 typedef union {
     uint16_t value;
     struct  {
-      uint16_t exponent : 4; //exponent (R)
       uint16_t fractResult : 12; //fractional result (R)
+      uint16_t exponent : 4; //exponent (R)
     };
 }resultRegister;
 

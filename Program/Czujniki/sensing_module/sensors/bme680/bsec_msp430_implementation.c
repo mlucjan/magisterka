@@ -7,7 +7,8 @@
 #include "bsec_msp430_implementation.h"
 
 ///Tymczasowy workaround na timestampa
-int64_t system_current_time = 0;
+//int64_t system_current_time = 0;
+extern int64_t systemTimerOverflows;
 
 struct bsec_output my_bsec_output;
 
@@ -114,12 +115,10 @@ void sleep(uint32_t t_ms)
  */
 int64_t get_timestamp_us()
 {
-    //int64_t system_current_time = 0; ----Przeniesione do globalnej zmiennej
     // ...
     // Please insert system specific function to retrieve a timestamp (in microseconds)
     // ...
-    system_current_time += 1000;
-    return system_current_time;
+    return get_system_time_ms()*1000;
 }
 
 /*!
