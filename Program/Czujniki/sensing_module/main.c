@@ -9,18 +9,21 @@
 //Measurement result variables
 float luxResult = 0;
 micMeasResult micResult;
-extern struct bsec_output my_bsec_output;
-return_values_init bsec_init_ret_val;
+extern struct bsec_output myBsecOutput;
+return_values_init bsecInitRetVal;
 
-//System variables
-int64_t system_current_time = 0;
-int64_t last_bsec_timestamp = 0;
+//System variables and flags
+int64_t systemCurrentTime = 0;
+int64_t lastBsecTimestamp = 0;
+uint8_t sendingPacket = 0;
+uint8_t txIndex = 0;
 
 //"Ready to send" flags
-uint8_t mic_rdy = 0, opt_rdy = 0, bme_rdy = 0;
+uint8_t micRdy = 0, optRdy = 0, bmeRdy = 0;
 
 //Data packet for the radio module
-dataPacket packet = {0}
+dataPacket packet;
+
 void setup(){
     // stop watchdog
     WDT_A_hold(WDT_A_BASE);
@@ -34,56 +37,61 @@ void setup(){
     init_i2c();
     _enable_interrupt();
     opt3001_default_init();
-    bsec_init_ret_val = bsec_iot_init(BSEC_SAMPLE_RATE_LP, 0.0f, bus_write, bus_read, sleep, state_load, config_load);
+    bsecInitRetVal = bsec_iot_init(BSEC_SAMPLE_RATE_LP, 0.0f, bus_write, bus_read, sleep, state_load, config_load);
+    packet = packetInitValue;
 }
 
 void send_data_to_radio_module(){
-    if(mic_rdy){
-        //add value to data packet
+    //form the packet
+    if(micRdy){
+        packet.micMax = micResult.maxResult;
+        packet.micMin = micResult.minResult;
     }
-    if(opt_rdy){
-        //add value to data packet
+    if(optRdy){
+        packet.lux = luxResult;
     }
-    if(bme_rdy){
-        //add value to data packet
+    if(bmeRdy){
+        packet.iaq = myBsecOutput.iaq;
+        packet.temperature = myBsecOutput.temperature;
+        packet.humidity = myBsecOutput.humidity;
+        packet.pressure = myBsecOutput.pressure;
     }
-    mic_rdy = 0;
-    opt_rdy = 0;
-    bme_rdy = 0;
+    //clear measurement result flags
+    micRdy = 0;
+    optRdy = 0;
+    bmeRdy = 0;
+    sendingPacket = 1;
+    //set STE pin for radio module to start SPI transaction
+    GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN7);
 }
 
 void main (void)
 {
     setup();
-//    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN7);
     while(1){
-        if(get_mic_status() == DONE){
-            micResult = get_mic_result();
-            mic_rdy = 1;
-        }
-//        __delay_cycles(12000);
-//        system_current_time = get_system_time_ms();
-//        GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN7);
-        if(opt3001_get_status(CONVERSION_READY)){
-//        if(GPIO_getInputPinValue(GPIO_PORT_P1, GPIO_PIN7) == GPIO_INPUT_PIN_LOW){
-//            GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN7);
-            luxResult = opt3001_get_lux_result();
-            opt_rdy = 1;
-        }
-//        GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN7);
-//        __delay_cycles(12000000);
-//        GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN7);
-        bsec_iot_service(sleep, get_timestamp_us, output_ready, state_save, 10000);
-        if(my_bsec_output.timestamp > last_bsec_timestamp){
-            last_bsec_timestamp = my_bsec_output.timestamp;
-            bme_rdy = 1;
-        }
-//        GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN7);
+        if(!sendingPacket){
+            if(get_mic_status() == DONE){
+                micResult = get_mic_result();
+                micRdy = 1;
+            }
 
-        send_data_to_radio_module();
-//        __delay_cycles(6000000);
+            if(opt3001_get_status(CONVERSION_READY)){
+//            if(GPIO_getInputPinValue(GPIO_PORT_P1, GPIO_PIN7) == GPIO_INPUT_PIN_LOW){
+                luxResult = opt3001_get_lux_result();
+                optRdy = 1;
+            }
+
+            bsec_iot_service(sleep, get_timestamp_us, output_ready, state_save, 10000);
+            if(myBsecOutput.timestamp > lastBsecTimestamp){
+                lastBsecTimestamp = myBsecOutput.timestamp;
+                bmeRdy = 1;
+            }
+            //mic data sent as frequently as possible
+            if(micRdy){
+                send_data_to_radio_module();
+            }
+        }
     }
-
 }
 
 //******************************************************************************
@@ -102,22 +110,18 @@ void USCI_A1_ISR(void)
     switch(__even_in_range(UCA1IV, USCI_SPI_UCTXIFG))
     {
         case USCI_SPI_UCRXIFG:      // UCRXIFG
-//            //USCI_A0 TX buffer ready?
-//            while (!EUSCI_A_SPI_getInterruptStatus(EUSCI_A0_BASE,
-//                        EUSCI_A_SPI_TRANSMIT_INTERRUPT));
-//
-//            RXData = EUSCI_A_SPI_receiveData(EUSCI_A0_BASE);
-//
-//            //Increment data
-//            TXData++;
-//
-//            //Send next value
-//            EUSCI_A_SPI_transmitData(EUSCI_A0_BASE,
-//                    TXData
-//                    );
-//
-//            //Delay between transmissions for slave to process information
-//            __delay_cycles(40);
+            //USCI_A0 TX buffer ready?
+            while (!EUSCI_A_SPI_getInterruptStatus(EUSCI_A0_BASE,
+                        EUSCI_A_SPI_TRANSMIT_INTERRUPT));
+            //Send byte of the packet
+            EUSCI_A_SPI_transmitData(EUSCI_A0_BASE, packet.bytearray[txIndex]);
+            txIndex++;
+            if(txIndex == PACKET_SIZE_BYTES){
+                sendingPacket = 0;
+                txIndex = 0;
+                packet = packetInitValue;
+                GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN7);
+            }
             break;
         default:
             break;

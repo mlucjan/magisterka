@@ -7,11 +7,17 @@
 
 #ifndef COMMUNICATION_DATA_PACKET_H_
 #define COMMUNICATION_DATA_PACKET_H_
+
+#include <stdint.h>
+
+#define PACKET_SIZE_BYTES 29
+
 typedef union{
-    uint8_t bytearray[28];
+    uint8_t bytearray[PACKET_SIZE_BYTES];
     struct{
-        uint32_t mic_max;
-        uint32_t mic_min;
+        uint8_t packetSizeBytes;
+        uint32_t micMax;
+        uint32_t micMin;
         float lux;
         float iaq;
         float temperature;
@@ -20,5 +26,7 @@ typedef union{
 
     };
 }dataPacket;
+
+extern const dataPacket packetInitValue;
 
 #endif /* COMMUNICATION_DATA_PACKET_H_ */

@@ -127,7 +127,7 @@ void init_bme680_spi(){
 
 void init_spi(radio_SPI_mode radio_spi_mode){
 
-//    init_radio_spi(radio_spi_mode);
+    init_radio_spi(radio_spi_mode);
     init_bme680_spi();
 
 }

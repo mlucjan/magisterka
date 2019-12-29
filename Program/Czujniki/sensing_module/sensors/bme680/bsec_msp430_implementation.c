@@ -10,7 +10,7 @@
 //int64_t system_current_time = 0;
 extern int64_t systemTimerOverflows;
 
-struct bsec_output my_bsec_output;
+struct bsec_output myBsecOutput;
 
 /*!
  * @brief           Write operation in either I2C or SPI
@@ -141,19 +141,19 @@ void output_ready(int64_t timestamp, float iaq, uint8_t iaq_accuracy, float temp
      float pressure, float raw_temperature, float raw_humidity, float gas, bsec_library_return_t bsec_status,
      float static_iaq, float co2_equivalent, float breath_voc_equivalent)
 {
-    my_bsec_output.timestamp = timestamp;
-    my_bsec_output.iaq = iaq;
-    my_bsec_output.iaq_accuracy = iaq_accuracy;
-    my_bsec_output.temperature = temperature;
-    my_bsec_output.humidity = humidity;
-    my_bsec_output.pressure = pressure;
-    my_bsec_output.raw_temperature = raw_temperature;
-    my_bsec_output.humidity = raw_humidity;
-    my_bsec_output.gas = gas;
-    my_bsec_output.bsec_status = bsec_status;
-    my_bsec_output.static_iaq = static_iaq;
-    my_bsec_output.co2_equivalent = co2_equivalent;
-    my_bsec_output.breath_voc_equivalent = breath_voc_equivalent;
+    myBsecOutput.timestamp = timestamp;
+    myBsecOutput.iaq = iaq;
+    myBsecOutput.iaq_accuracy = iaq_accuracy;
+    myBsecOutput.temperature = temperature;
+    myBsecOutput.humidity = humidity;
+    myBsecOutput.pressure = pressure;
+    myBsecOutput.raw_temperature = raw_temperature;
+    myBsecOutput.humidity = raw_humidity;
+    myBsecOutput.gas = gas;
+    myBsecOutput.bsec_status = bsec_status;
+    myBsecOutput.static_iaq = static_iaq;
+    myBsecOutput.co2_equivalent = co2_equivalent;
+    myBsecOutput.breath_voc_equivalent = breath_voc_equivalent;
 }
 
 /*!
