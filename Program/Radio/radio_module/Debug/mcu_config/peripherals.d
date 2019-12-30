@@ -42,6 +42,7 @@ mcu_config/peripherals.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~
 mcu_config/peripherals.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_a_spi.h
 mcu_config/peripherals.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/timer_b.h
 mcu_config/peripherals.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_spi.h
+mcu_config/peripherals.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/Board.h
 
 ../mcu_config/peripherals.c: 
 ../mcu_config/peripherals.h: 
@@ -85,3 +86,4 @@ mcu_config/peripherals.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_a_spi.h: 
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/timer_b.h: 
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_spi.h: 
+/Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/Board.h: 

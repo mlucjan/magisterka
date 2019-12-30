@@ -1,8 +1,11 @@
 #include "driverlib.h"
 #include "mcu_config/peripherals.h"
+#include "communication/rn2483.h"
+#include "communication/data_packet.h"
+#include <stdlib.h>
 
-void main (void)
-{
+dataPacket packet;
+void setup(){
     //Stop watchdog timer
     WDT_A_hold(WDT_A_BASE);
 
@@ -24,9 +27,20 @@ void main (void)
      * previously configured port settings
      */
     PMM_unlockLPM5();
-
     init_gpio();
+
     init_uart();
     init_spi();
+    lora_init();
+    packet = packetInitValue;
+}
+
+void main (void)
+{
+    setup();
+    while(1){
+        lora_transmit_data_p2p(packet.bytearray, (uint8_t)sizeof(packet), 1000, 1000);
+        __delay_cycles(16000000);
+    }
 
 }

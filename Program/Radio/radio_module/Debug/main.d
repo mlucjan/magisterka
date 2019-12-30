@@ -43,6 +43,13 @@ main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅ
 main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_spi.h
 main.obj: ../mcu_config/peripherals.h
 main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h
+main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/Board.h
+main.obj: ../communication/rn2483.h
+main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h
+main.obj: ../communication/data_packet.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/stdlib.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/_ti_config.h
+main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/linkage.h
 
 ../main.c: 
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h: 
@@ -87,3 +94,10 @@ main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅ
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_spi.h: 
 ../mcu_config/peripherals.h: 
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h: 
+/Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/Board.h: 
+../communication/rn2483.h: 
+/Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h: 
+../communication/data_packet.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/stdlib.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/_ti_config.h: 
+/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/linkage.h: 
