@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker Unix v18.12.3                  
 ******************************************************************************
->> Linked Fri Jan 10 13:53:17 2020
+>> Linked Fri Jan 10 16:14:46 2020
 
 OUTPUT FILE NAME:   <radio_module.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00009632
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00009656
 
 
 MEMORY CONFIGURATION
@@ -16,8 +16,8 @@ MEMORY CONFIGURATION
   INFO                  00001800   00000200  00000000  00000200  RWIX
   TLVMEM                00001a00   00000200  00000000  00000200  RWIX
   BOOTCODE              00001c00   00000400  00000000  00000400  RWIX
-  RAM                   00002000   00001000  00000275  00000d8b  RWIX
-  FRAM                  00008000   00007f80  00001656  0000692a  RWIX
+  RAM                   00002000   00001000  00000273  00000d8d  RWIX
+  FRAM                  00008000   00007f80  0000167a  00006906  RWIX
   JTAGSIGNATURE         0000ff80   00000004  00000004  00000000  RWIX  ffff 
   BSLSIGNATURE          0000ff84   00000004  00000004  00000000  RWIX  ffff 
   BSLCONFIGURATIONSIGNA 0000ff88   00000002  00000002  00000000  RWIX  ffff 
@@ -86,111 +86,111 @@ section   page    origin      length       input sections
 
 .sysmem    0    00008000    00000000     UNINITIALIZED
 
-.cinit     0    00008000    000000a2     
-                  00008000    0000007e     (.cinit..data.load) [load image]
-                  00008080    0000000c     (__TI_handler_table)
-                  0000808c    00000006     (.cinit..bss.load) [load image, compression = zero_init]
-                  00008092    00000010     (__TI_cinit_table)
+.cinit     0    00008000    000000a0     
+                  00008000    0000007c     (.cinit..data.load) [load image]
+                  0000807e    0000000c     (__TI_handler_table)
+                  0000808a    00000006     (.cinit..bss.load) [load image, compression = zero_init]
+                  00008090    00000010     (__TI_cinit_table)
 
-.pinit     0    000080a2    00000000     UNINITIALIZED
+.pinit     0    000080a0    00000000     UNINITIALIZED
 
-.binit     0    000080a2    00000000     
+.binit     0    000080a0    00000000     
 
 .init_array 
-*          0    000080a2    00000000     UNINITIALIZED
+*          0    000080a0    00000000     UNINITIALIZED
 
 .mspabi.exidx 
-*          0    000080a2    00000000     UNINITIALIZED
+*          0    000080a0    00000000     UNINITIALIZED
 
 .mspabi.extab 
-*          0    000080a2    00000000     UNINITIALIZED
+*          0    000080a0    00000000     UNINITIALIZED
 
-.const     0    000080a2    0000012a     
-                  000080a2    000000a6     rn2483.obj (.const:.string)
-                  00008148    0000001c     gpio.obj (.const:GPIO_PORT_TO_BASE)
-                  00008164    0000001c     data_packet.obj (.const:packetInitValue)
-                  00008180    00000012     peripherals.obj (.const:$P$T0$1)
-                  00008192    00000012     peripherals.obj (.const:$P$T1$2)
-                  000081a4    00000010     peripherals.obj (.const:$P$T2$3)
-                  000081b4    00000010     peripherals.obj (.const:$P$T3$4)
-                  000081c4    00000008     bl652.obj (.const:.string)
+.const     0    000080a0    0000012a     
+                  000080a0    000000a6     rn2483.obj (.const:.string)
+                  00008146    0000001c     gpio.obj (.const:GPIO_PORT_TO_BASE)
+                  00008162    0000001c     data_packet.obj (.const:packetInitValue)
+                  0000817e    00000012     peripherals.obj (.const:$P$T0$1)
+                  00008190    00000012     peripherals.obj (.const:$P$T1$2)
+                  000081a2    00000010     peripherals.obj (.const:$P$T2$3)
+                  000081b2    00000010     peripherals.obj (.const:$P$T3$4)
+                  000081c2    00000008     bl652.obj (.const:.string)
 
-.text      0    000081cc    000013dc     
-                  000081cc    0000015a     rn2483.obj (.text:init_lora)
-                  00008326    00000128     rn2483.obj (.text:lora_transmit_data_p2p)
-                  0000844e    000000fa     main.obj (.text:main)
-                  00008548    000000ee     cs.obj (.text:CS_initClockSignal)
-                  00008636    000000ee     rts430x_lc_sd_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  00008724    000000e4     peripherals.obj (.text:init_spi)
-                  00008808    000000ca     cs.obj (.text:CS_initFLL)
-                  000088d2    000000b4     bl652.obj (.text:init_BLE)
-                  00008986    000000b0     rn2483.obj (.text:lora_wake_up)
-                  00008a36    000000b0     cs.obj (.text:privateCSComputeCLKFrequency)
-                  00008ae6    000000a0     rn2483.obj (.text:buffer_to_hex_string)
-                  00008b86    00000090     eusci_a_uart.obj (.text:EUSCI_A_UART_init)
-                  00008c16    00000090     cs.obj (.text:privateCSSourceClockFromDCO)
-                  00008ca6    00000086     peripherals.obj (.text:init_gpio)
-                  00008d2c    00000084     main.obj (.text:read_sensor_data)
-                  00008db0    00000082     rn2483.obj (.text:lora_command)
-                  00008e32    0000007c     cs.obj (.text:privateDCORange)
-                  00008eae    00000078     peripherals.obj (.text:init_ble_uart)
-                  00008f26    00000078     peripherals.obj (.text:init_lora_uart)
-                  00008f9e    0000006a     rts430x_lc_sd_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
-                  00009008    00000058                            : div32u.asm.obj (.text)
-                  00009060    00000050     eusci_b_spi.obj (.text:EUSCI_B_SPI_initMaster)
-                  000090b0    00000050     main.obj (.text:setup)
-                  00009100    00000040     gpio.obj (.text:GPIO_setAsPeripheralModuleFunctionInputPin)
-                  00009140    00000040     rts430x_lc_sd_eabi.lib : cpy_util.asm.obj (.text:__memcpy_far)
-                  00009180    00000040                            : div32s.asm.obj (.text)
-                  000091c0    0000003e                            : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  000091fe    0000003c                            : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  0000923a    00000036     cs.obj (.text:CS_initFLLSettle)
-                  00009270    00000030     bl652.obj (.text:BLE_transmit_data)
-                  000092a0    00000030     peripherals.obj (.text:read_dipswitch_setting)
-                  000092d0    0000002e     bl652.obj (.text:find_pattern)
-                  000092fe    0000002c     rts430x_lc_sd_eabi.lib : div16s.asm.obj (.text)
-                  0000932a    00000028     rn2483.obj (.text:buffer_compare)
-                  00009352    00000028     rn2483.obj (.text:lora_sleep)
-                  0000937a    00000026     gpio.obj (.text:GPIO_setAsInputPinWithPullUpResistor)
-                  000093a0    00000024     rts430x_lc_sd_eabi.lib : mult32_f5hw.asm.obj (.text)
-                  000093c4    00000022     gpio.obj (.text:GPIO_setAsInputPin)
-                  000093e6    0000001e     gpio.obj (.text:GPIO_setAsOutputPin)
-                  00009404    0000001c     main.obj (.text:sensor_data_ready)
-                  00009420    0000001a     cs.obj (.text:CS_getSMCLK)
-                  0000943a    0000001a     eusci_a_uart.obj (.text:EUSCI_A_UART_enableInterrupt)
-                  00009454    0000001a     gpio.obj (.text:GPIO_getInputPinValue)
-                  0000946e    00000016     gpio.obj (.text:GPIO_setOutputHighOnPin)
-                  00009484    00000016     gpio.obj (.text:GPIO_setOutputLowOnPin)
-                  0000949a    00000016     gpio.obj (.text:GPIO_toggleOutputOnPin)
-                  000094b0    00000016     wdt_a.obj (.text:WDT_A_hold)
-                  000094c6    00000016     main.obj (.text:clear_buffer)
-                  000094dc    00000016     rn2483.obj (.text:clear_lora_rx_buffer)
-                  000094f2    00000016     rts430x_lc_sd_eabi.lib : div16u.asm.obj (.text)
-                  00009508    00000014     eusci_a_uart.obj (.text:EUSCI_A_UART_receiveData)
-                  0000951c    00000014     eusci_a_uart.obj (.text:EUSCI_A_UART_transmitData)
-                  00009530    00000012     rts430x_lc_sd_eabi.lib : memcpy.c.obj (.text:memcpy)
-                  00009542    0000000a     eusci_b_spi.obj (.text:EUSCI_B_SPI_isBusy)
-                  0000954c    0000000a     peripherals.obj (.text:init_uart)
-                  00009556    0000000a     rts430x_lc_sd_eabi.lib : lsl16.asm.obj (.text)
-                  00009560    00000008     eusci_a_uart.obj (.text:EUSCI_A_UART_queryStatusFlags)
-                  00009568    00000008     eusci_b_spi.obj (.text:EUSCI_B_SPI_receiveData)
-                  00009570    00000008     eusci_b_spi.obj (.text:EUSCI_B_SPI_transmitData)
-                  00009578    00000006     eusci_a_uart.obj (.text:EUSCI_A_UART_clearInterrupt)
-                  0000957e    00000006     eusci_a_uart.obj (.text:EUSCI_A_UART_enable)
-                  00009584    00000006     eusci_b_spi.obj (.text:EUSCI_B_SPI_clearInterrupt)
-                  0000958a    00000006     eusci_b_spi.obj (.text:EUSCI_B_SPI_enable)
-                  00009590    00000006     eusci_b_spi.obj (.text:EUSCI_B_SPI_enableInterrupt)
-                  00009596    00000006     pmm.obj (.text:PMM_unlockLPM5)
-                  0000959c    00000006     rts430x_lc_sd_eabi.lib : exit.c.obj (.text:abort)
-                  000095a2    00000004                            : pre_init.c.obj (.text:_system_pre_init)
-                  000095a6    00000002                            : startup.c.obj (.text:_system_post_cinit)
+.text      0    000081ca    000013f8     
+                  000081ca    0000015a     rn2483.obj (.text:init_lora)
+                  00008324    00000128     rn2483.obj (.text:lora_transmit_data_p2p)
+                  0000844c    00000100     main.obj (.text:main)
+                  0000854c    000000ee     cs.obj (.text:CS_initClockSignal)
+                  0000863a    000000ee     rts430x_lc_sd_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00008728    000000e4     peripherals.obj (.text:init_spi)
+                  0000880c    000000ce     bl652.obj (.text:init_BLE)
+                  000088da    000000ca     cs.obj (.text:CS_initFLL)
+                  000089a4    000000b0     rn2483.obj (.text:lora_wake_up)
+                  00008a54    000000b0     cs.obj (.text:privateCSComputeCLKFrequency)
+                  00008b04    000000a0     rn2483.obj (.text:buffer_to_hex_string)
+                  00008ba4    00000090     eusci_a_uart.obj (.text:EUSCI_A_UART_init)
+                  00008c34    00000090     cs.obj (.text:privateCSSourceClockFromDCO)
+                  00008cc4    00000086     peripherals.obj (.text:init_gpio)
+                  00008d4a    00000082     rn2483.obj (.text:lora_command)
+                  00008dcc    00000080     main.obj (.text:read_sensor_data)
+                  00008e4c    0000007c     cs.obj (.text:privateDCORange)
+                  00008ec8    00000078     peripherals.obj (.text:init_ble_uart)
+                  00008f40    00000078     peripherals.obj (.text:init_lora_uart)
+                  00008fb8    0000006a     rts430x_lc_sd_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
+                  00009022    00000058                            : div32u.asm.obj (.text)
+                  0000907a    00000050     eusci_b_spi.obj (.text:EUSCI_B_SPI_initMaster)
+                  000090ca    00000050     main.obj (.text:setup)
+                  0000911a    00000040     gpio.obj (.text:GPIO_setAsPeripheralModuleFunctionInputPin)
+                  0000915a    00000040     rts430x_lc_sd_eabi.lib : cpy_util.asm.obj (.text:__memcpy_far)
+                  0000919a    00000040                            : div32s.asm.obj (.text)
+                  000091da    0000003e                            : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  00009218    0000003c                            : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00009254    00000036     cs.obj (.text:CS_initFLLSettle)
+                  0000928a    00000030     bl652.obj (.text:BLE_transmit_data)
+                  000092ba    00000030     peripherals.obj (.text:read_dipswitch_setting)
+                  000092ea    0000002e     bl652.obj (.text:find_pattern)
+                  00009318    0000002c     rts430x_lc_sd_eabi.lib : div16s.asm.obj (.text)
+                  00009344    00000028     rn2483.obj (.text:buffer_compare)
+                  0000936c    00000028     rn2483.obj (.text:lora_sleep)
+                  00009394    00000026     gpio.obj (.text:GPIO_setAsInputPinWithPullUpResistor)
+                  000093ba    00000024     rts430x_lc_sd_eabi.lib : mult32_f5hw.asm.obj (.text)
+                  000093de    00000022     gpio.obj (.text:GPIO_setAsInputPin)
+                  00009400    0000001e     gpio.obj (.text:GPIO_setAsOutputPin)
+                  0000941e    0000001c     main.obj (.text:sensor_data_ready)
+                  0000943a    0000001a     cs.obj (.text:CS_getSMCLK)
+                  00009454    0000001a     eusci_a_uart.obj (.text:EUSCI_A_UART_enableInterrupt)
+                  0000946e    0000001a     gpio.obj (.text:GPIO_getInputPinValue)
+                  00009488    00000016     gpio.obj (.text:GPIO_setOutputHighOnPin)
+                  0000949e    00000016     gpio.obj (.text:GPIO_setOutputLowOnPin)
+                  000094b4    00000016     gpio.obj (.text:GPIO_toggleOutputOnPin)
+                  000094ca    00000016     wdt_a.obj (.text:WDT_A_hold)
+                  000094e0    00000016     main.obj (.text:clear_buffer)
+                  000094f6    00000016     rn2483.obj (.text:clear_lora_rx_buffer)
+                  0000950c    00000016     rts430x_lc_sd_eabi.lib : div16u.asm.obj (.text)
+                  00009522    00000014     eusci_a_uart.obj (.text:EUSCI_A_UART_receiveData)
+                  00009536    00000014     eusci_a_uart.obj (.text:EUSCI_A_UART_transmitData)
+                  0000954a    00000012     rts430x_lc_sd_eabi.lib : memcpy.c.obj (.text:memcpy)
+                  0000955c    0000000a     eusci_b_spi.obj (.text:EUSCI_B_SPI_isBusy)
+                  00009566    0000000a     peripherals.obj (.text:init_uart)
+                  00009570    0000000a     rts430x_lc_sd_eabi.lib : lsl16.asm.obj (.text)
+                  0000957a    00000008     eusci_a_uart.obj (.text:EUSCI_A_UART_queryStatusFlags)
+                  00009582    00000008     eusci_b_spi.obj (.text:EUSCI_B_SPI_receiveData)
+                  0000958a    00000008     eusci_b_spi.obj (.text:EUSCI_B_SPI_transmitData)
+                  00009592    00000006     eusci_a_uart.obj (.text:EUSCI_A_UART_clearInterrupt)
+                  00009598    00000006     eusci_a_uart.obj (.text:EUSCI_A_UART_enable)
+                  0000959e    00000006     eusci_b_spi.obj (.text:EUSCI_B_SPI_clearInterrupt)
+                  000095a4    00000006     eusci_b_spi.obj (.text:EUSCI_B_SPI_enable)
+                  000095aa    00000006     eusci_b_spi.obj (.text:EUSCI_B_SPI_enableInterrupt)
+                  000095b0    00000006     pmm.obj (.text:PMM_unlockLPM5)
+                  000095b6    00000006     rts430x_lc_sd_eabi.lib : exit.c.obj (.text:abort)
+                  000095bc    00000004                            : pre_init.c.obj (.text:_system_pre_init)
+                  000095c0    00000002                            : startup.c.obj (.text:_system_post_cinit)
 
 .text:_isr 
-*          0    000095a8    000000ae     
-                  000095a8    0000004c     rn2483.obj (.text:_isr:EUSCI_A0_ISR)
-                  000095f4    0000003e     bl652.obj (.text:_isr:EUSCI_A1_ISR)
-                  00009632    0000001c     rts430x_lc_sd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noargs)
-                  0000964e    00000008                            : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
+*          0    000095c2    000000b8     
+                  000095c2    0000004c     rn2483.obj (.text:_isr:EUSCI_A0_ISR)
+                  0000960e    00000048     bl652.obj (.text:_isr:EUSCI_A1_ISR)
+                  00009656    0000001c     rts430x_lc_sd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noargs)
+                  00009672    00000008                            : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
 
 .bss       0    00002000    0000015d     UNINITIALIZED
                   00002000    00000102     (.common:hex_payload)
@@ -199,14 +199,14 @@ section   page    origin      length       input sections
                   0000215a    00000002     (.common:i)
                   0000215c    00000001     (.common:previousRadioChoice)
 
-.data      0    0000215e    00000078     UNINITIALIZED
+.data      0    0000215e    00000076     UNINITIALIZED
                   0000215e    00000046     bl652.obj (.data:rxBufBLE)
                   000021a4    00000013     rn2483.obj (.data)
                   000021b7    00000001     --HOLE--
-                  000021b8    0000000a     main.obj (.data)
-                  000021c2    0000000a     main.obj (.data:testArrayRx)
-                  000021cc    00000006     bl652.obj (.data)
-                  000021d2    00000004     cs.obj (.data)
+                  000021b8    0000000a     main.obj (.data:testArrayRx)
+                  000021c2    00000008     main.obj (.data)
+                  000021ca    00000006     bl652.obj (.data)
+                  000021d0    00000004     cs.obj (.data)
 
 .stack     0    00002f60    000000a0     UNINITIALIZED
                   00002f60    00000002     rts430x_lc_sd_eabi.lib : boot.c.obj (.stack)
@@ -310,16 +310,16 @@ MODULE SUMMARY
        Module                       code   ro data   rw data
        ------                       ----   -------   -------
     ./
-       main.obj                     512    0         51     
+       main.obj                     514    0         49     
     +--+----------------------------+------+---------+---------+
-       Total:                       512    0         51     
+       Total:                       514    0         49     
                                                             
     ./communication/
        rn2483.obj                   1286   168       337    
-       bl652.obj                    336    10        76     
+       bl652.obj                    372    10        76     
        data_packet.obj              0      28        0      
     +--+----------------------------+------+---------+---------+
-       Total:                       1622   206       413    
+       Total:                       1658   206       413    
                                                             
     ./driverlib/MSP430FR2xx_4xx/
        cs.obj                       964    0         4      
@@ -378,21 +378,21 @@ MODULE SUMMARY
        Total:                       860    42        0      
                                                             
        Stack:                       0      0         160    
-       Linker Generated:            0      160       0      
+       Linker Generated:            0      158       0      
     +--+----------------------------+------+---------+---------+
-       Grand Total:                 5258   504       628    
+       Grand Total:                 5296   502       626    
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 00008092 records: 2, size/record: 8, table size: 16
-	.data: load addr=00008000, load size=0000007e bytes, run addr=0000215e, run size=00000078 bytes, compression=copy
-	.bss: load addr=0000808c, load size=00000006 bytes, run addr=00002000, run size=0000015d bytes, compression=zero_init
+__TI_cinit_table @ 00008090 records: 2, size/record: 8, table size: 16
+	.data: load addr=00008000, load size=0000007c bytes, run addr=0000215e, run size=00000076 bytes, compression=copy
+	.bss: load addr=0000808a, load size=00000006 bytes, run addr=00002000, run size=0000015d bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 00008080 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 0000807e records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_lzss
 	index: 2, handler: __TI_decompress_none
@@ -480,9 +480,9 @@ address   name
 00000672  BAKMEM9                                   
 00000673  BAKMEM9_H                                 
 00000672  BAKMEM9_L                                 
-000021ce  BLEConnected                              
-00009270  BLE_transmit_data                         
-0000959c  C$$EXIT                                   
+000021cc  BLEConnected                              
+0000928a  BLE_transmit_data                         
+000095b6  C$$EXIT                                   
 000002ee  CAPTIOCTL                                 
 000002ef  CAPTIOCTL_H                               
 000002ee  CAPTIOCTL_L                               
@@ -561,26 +561,26 @@ address   name
 00000190  CSCTL8                                    
 00000191  CSCTL8_H                                  
 00000190  CSCTL8_L                                  
-00009420  CS_getSMCLK                               
-00008548  CS_initClockSignal                        
-00008808  CS_initFLL                                
-0000923a  CS_initFLLSettle                          
-000095a8  EUSCI_A0_ISR                              
-000095f4  EUSCI_A1_ISR                              
-00009578  EUSCI_A_UART_clearInterrupt               
-0000957e  EUSCI_A_UART_enable                       
-0000943a  EUSCI_A_UART_enableInterrupt              
-00008b86  EUSCI_A_UART_init                         
-00009560  EUSCI_A_UART_queryStatusFlags             
-00009508  EUSCI_A_UART_receiveData                  
-0000951c  EUSCI_A_UART_transmitData                 
-00009584  EUSCI_B_SPI_clearInterrupt                
-0000958a  EUSCI_B_SPI_enable                        
-00009590  EUSCI_B_SPI_enableInterrupt               
-00009060  EUSCI_B_SPI_initMaster                    
-00009542  EUSCI_B_SPI_isBusy                        
-00009568  EUSCI_B_SPI_receiveData                   
-00009570  EUSCI_B_SPI_transmitData                  
+0000943a  CS_getSMCLK                               
+0000854c  CS_initClockSignal                        
+000088da  CS_initFLL                                
+00009254  CS_initFLLSettle                          
+000095c2  EUSCI_A0_ISR                              
+0000960e  EUSCI_A1_ISR                              
+00009592  EUSCI_A_UART_clearInterrupt               
+00009598  EUSCI_A_UART_enable                       
+00009454  EUSCI_A_UART_enableInterrupt              
+00008ba4  EUSCI_A_UART_init                         
+0000957a  EUSCI_A_UART_queryStatusFlags             
+00009522  EUSCI_A_UART_receiveData                  
+00009536  EUSCI_A_UART_transmitData                 
+0000959e  EUSCI_B_SPI_clearInterrupt                
+000095a4  EUSCI_B_SPI_enable                        
+000095aa  EUSCI_B_SPI_enableInterrupt               
+0000907a  EUSCI_B_SPI_initMaster                    
+0000955c  EUSCI_B_SPI_isBusy                        
+00009582  EUSCI_B_SPI_receiveData                   
+0000958a  EUSCI_B_SPI_transmitData                  
 000001a0  FRCTL0                                    
 000001a1  FRCTL0_H                                  
 000001a0  FRCTL0_L                                  
@@ -590,14 +590,14 @@ address   name
 000001a6  GCCTL1                                    
 000001a7  GCCTL1_H                                  
 000001a6  GCCTL1_L                                  
-00009454  GPIO_getInputPinValue                     
-000093c4  GPIO_setAsInputPin                        
-0000937a  GPIO_setAsInputPinWithPullUpResistor      
-000093e6  GPIO_setAsOutputPin                       
-00009100  GPIO_setAsPeripheralModuleFunctionInputPin
-0000946e  GPIO_setOutputHighOnPin                   
-00009484  GPIO_setOutputLowOnPin                    
-0000949a  GPIO_toggleOutputOnPin                    
+0000946e  GPIO_getInputPinValue                     
+000093de  GPIO_setAsInputPin                        
+00009394  GPIO_setAsInputPinWithPullUpResistor      
+00009400  GPIO_setAsOutputPin                       
+0000911a  GPIO_setAsPeripheralModuleFunctionInputPin
+00009488  GPIO_setOutputHighOnPin                   
+0000949e  GPIO_setOutputLowOnPin                    
+000094b4  GPIO_toggleOutputOnPin                    
 000006c4  ICCILSR0                                  
 000006c5  ICCILSR0_H                                
 000006c4  ICCILSR0_L                                
@@ -965,7 +965,7 @@ address   name
 0000012a  PMMIFG                                    
 0000012b  PMMIFG_H                                  
 0000012a  PMMIFG_L                                  
-00009596  PMM_unlockLPM5                            
+000095b0  PMM_unlockLPM5                            
 000004e4  RES0                                      
 000004e5  RES0_H                                    
 000004e4  RES0_L                                    
@@ -1368,17 +1368,17 @@ address   name
 000001cc  WDTCTL                                    
 000001cd  WDTCTL_H                                  
 000001cc  WDTCTL_L                                  
-000094b0  WDT_A_hold                                
+000094ca  WDT_A_hold                                
 00003000  __STACK_END                               
 000000a0  __STACK_SIZE                              
-00008092  __TI_CINIT_Base                           
-000080a2  __TI_CINIT_Limit                          
-00008080  __TI_Handler_Table_Base                   
-0000808c  __TI_Handler_Table_Limit                  
-0000964e  __TI_ISR_TRAP                             
-00008f9e  __TI_auto_init_nobinit_nopinit_hold_wdt   
-00008636  __TI_decompress_lzss                      
-000091fe  __TI_decompress_none                      
+00008090  __TI_CINIT_Base                           
+000080a0  __TI_CINIT_Limit                          
+0000807e  __TI_Handler_Table_Base                   
+0000808a  __TI_Handler_Table_Limit                  
+00009672  __TI_ISR_TRAP                             
+00008fb8  __TI_auto_init_nobinit_nopinit_hold_wdt   
+0000863a  __TI_decompress_lzss                      
+00009218  __TI_decompress_none                      
 0000ffce  __TI_int22                                
 0000ffd0  __TI_int23                                
 0000ffd2  __TI_int24                                
@@ -1404,78 +1404,77 @@ address   name
 ffffffff  __TI_pprof_out_hndl                       
 ffffffff  __TI_prof_data_size                       
 ffffffff  __TI_prof_data_start                      
-000091c0  __TI_zero_init_nomemset                   
+000091da  __TI_zero_init_nomemset                   
 ffffffff  __c_args__                                
-00009140  __memcpy_far                              
-000092fe  __mspabi_divi                             
-00009180  __mspabi_divli                            
-000094f2  __mspabi_divu                             
-00009008  __mspabi_divul                            
-000093a0  __mspabi_mpyl_f5hw                        
-000092fe  __mspabi_remi                             
-00009180  __mspabi_remli                            
-000094f2  __mspabi_remu                             
-00009008  __mspabi_remul                            
-00009556  __mspabi_slli                             
-00009632  _c_int00_noargs                           
+0000915a  __memcpy_far                              
+00009318  __mspabi_divi                             
+0000919a  __mspabi_divli                            
+0000950c  __mspabi_divu                             
+00009022  __mspabi_divul                            
+000093ba  __mspabi_mpyl_f5hw                        
+00009318  __mspabi_remi                             
+0000919a  __mspabi_remli                            
+0000950c  __mspabi_remu                             
+00009022  __mspabi_remul                            
+00009570  __mspabi_slli                             
+00009656  _c_int00_noargs                           
 0000fffe  _reset_vector                             
 00002f60  _stack                                    
-000095a6  _system_post_cinit                        
-000095a2  _system_pre_init                          
-0000959c  abort                                     
-0000932a  buffer_compare                            
-00008ae6  buffer_to_hex_string                      
-000094c6  clear_buffer                              
-000094dc  clear_lora_rx_buffer                      
+000095c0  _system_post_cinit                        
+000095bc  _system_pre_init                          
+000095b6  abort                                     
+00009344  buffer_compare                            
+00008b04  buffer_to_hex_string                      
+000094e0  clear_buffer                              
+000094f6  clear_lora_rx_buffer                      
 000021aa  command_header                            
-000021d0  connectPattern                            
-000021bc  currentRadioChoice                        
-000021ba  dataReceived                              
-000092d0  find_pattern                              
+000021ce  connectPattern                            
+000021c5  currentRadioChoice                        
+000021c4  dataReceived                              
+000092ea  find_pattern                              
 000021ac  first_response                            
 00008000  fram_rw_start                             
 00008000  fram_rx_start                             
 00002000  hex_payload                               
 0000215a  i                                         
-000088d2  init_BLE                                  
-00008eae  init_ble_uart                             
-00008ca6  init_gpio                                 
-000081cc  init_lora                                 
-00008f26  init_lora_uart                            
-00008724  init_spi                                  
-0000954c  init_uart                                 
-000021be  j                                         
-00008db0  lora_command                              
-00009352  lora_sleep                                
-00008326  lora_transmit_data_p2p                    
-00008986  lora_wake_up                              
-0000844e  main                                      
-00009530  memcpy                                    
+0000880c  init_BLE                                  
+00008ec8  init_ble_uart                             
+00008cc4  init_gpio                                 
+000081ca  init_lora                                 
+00008f40  init_lora_uart                            
+00008728  init_spi                                  
+00009566  init_uart                                 
+000021c6  j                                         
+00008d4a  lora_command                              
+0000936c  lora_sleep                                
+00008324  lora_transmit_data_p2p                    
+000089a4  lora_wake_up                              
+0000844c  main                                      
+0000954a  memcpy                                    
 000021b3  nibble1                                   
 000021b4  nibble2                                   
 0000213e  packet                                    
-00008164  packetInitValue                           
-000021b8  pin                                       
+00008162  packetInitValue                           
+000021c2  pin                                       
 0000215c  previousRadioChoice                       
-000092a0  read_dipswitch_setting                    
-00008d2c  read_sensor_data                          
+000092ba  read_dipswitch_setting                    
+00008dcc  read_sensor_data                          
 000021a6  resp_invalid_param                        
 000021a8  resp_max_mac_pause                        
 000021a4  resp_ok                                   
 0000215e  rxBufBLE                                  
-000021cd  rxCompletedBLE                            
-000021bb  rxInProgress                              
-000021cc  rxIndexBLE                                
+000021cb  rxCompletedBLE                            
+000021ca  rxIndexBLE                                
 00002102  rx_buf                                    
 000021b1  rx_complete                               
 000021b0  rx_index                                  
 000021b2  rxdata                                    
 000021ae  second_response                           
-000021b9  sensRequestedByteIdx                      
-00009404  sensor_data_ready                         
-000090b0  setup                                     
-000021c2  testArrayRx                               
-000021c0  timeout                                   
+000021c3  sensRequestedByteIdx                      
+0000941e  sensor_data_ready                         
+000090ca  setup                                     
+000021b8  testArrayRx                               
+000021c8  timeout                                   
 000021b6  timeouted                                 
 000021b5  tmp                                       
 
@@ -2438,101 +2437,100 @@ address   name
 000021b4  nibble2                                   
 000021b5  tmp                                       
 000021b6  timeouted                                 
-000021b8  pin                                       
-000021b9  sensRequestedByteIdx                      
-000021ba  dataReceived                              
-000021bb  rxInProgress                              
-000021bc  currentRadioChoice                        
-000021be  j                                         
-000021c0  timeout                                   
-000021c2  testArrayRx                               
-000021cc  rxIndexBLE                                
-000021cd  rxCompletedBLE                            
-000021ce  BLEConnected                              
-000021d0  connectPattern                            
+000021b8  testArrayRx                               
+000021c2  pin                                       
+000021c3  sensRequestedByteIdx                      
+000021c4  dataReceived                              
+000021c5  currentRadioChoice                        
+000021c6  j                                         
+000021c8  timeout                                   
+000021ca  rxIndexBLE                                
+000021cb  rxCompletedBLE                            
+000021cc  BLEConnected                              
+000021ce  connectPattern                            
 00002f60  _stack                                    
 00003000  __STACK_END                               
 00008000  fram_rw_start                             
 00008000  fram_rx_start                             
-00008080  __TI_Handler_Table_Base                   
-0000808c  __TI_Handler_Table_Limit                  
-00008092  __TI_CINIT_Base                           
-000080a2  __TI_CINIT_Limit                          
-00008164  packetInitValue                           
-000081cc  init_lora                                 
-00008326  lora_transmit_data_p2p                    
-0000844e  main                                      
-00008548  CS_initClockSignal                        
-00008636  __TI_decompress_lzss                      
-00008724  init_spi                                  
-00008808  CS_initFLL                                
-000088d2  init_BLE                                  
-00008986  lora_wake_up                              
-00008ae6  buffer_to_hex_string                      
-00008b86  EUSCI_A_UART_init                         
-00008ca6  init_gpio                                 
-00008d2c  read_sensor_data                          
-00008db0  lora_command                              
-00008eae  init_ble_uart                             
-00008f26  init_lora_uart                            
-00008f9e  __TI_auto_init_nobinit_nopinit_hold_wdt   
-00009008  __mspabi_divul                            
-00009008  __mspabi_remul                            
-00009060  EUSCI_B_SPI_initMaster                    
-000090b0  setup                                     
-00009100  GPIO_setAsPeripheralModuleFunctionInputPin
-00009140  __memcpy_far                              
-00009180  __mspabi_divli                            
-00009180  __mspabi_remli                            
-000091c0  __TI_zero_init_nomemset                   
-000091fe  __TI_decompress_none                      
-0000923a  CS_initFLLSettle                          
-00009270  BLE_transmit_data                         
-000092a0  read_dipswitch_setting                    
-000092d0  find_pattern                              
-000092fe  __mspabi_divi                             
-000092fe  __mspabi_remi                             
-0000932a  buffer_compare                            
-00009352  lora_sleep                                
-0000937a  GPIO_setAsInputPinWithPullUpResistor      
-000093a0  __mspabi_mpyl_f5hw                        
-000093c4  GPIO_setAsInputPin                        
-000093e6  GPIO_setAsOutputPin                       
-00009404  sensor_data_ready                         
-00009420  CS_getSMCLK                               
-0000943a  EUSCI_A_UART_enableInterrupt              
-00009454  GPIO_getInputPinValue                     
-0000946e  GPIO_setOutputHighOnPin                   
-00009484  GPIO_setOutputLowOnPin                    
-0000949a  GPIO_toggleOutputOnPin                    
-000094b0  WDT_A_hold                                
-000094c6  clear_buffer                              
-000094dc  clear_lora_rx_buffer                      
-000094f2  __mspabi_divu                             
-000094f2  __mspabi_remu                             
-00009508  EUSCI_A_UART_receiveData                  
-0000951c  EUSCI_A_UART_transmitData                 
-00009530  memcpy                                    
-00009542  EUSCI_B_SPI_isBusy                        
-0000954c  init_uart                                 
-00009556  __mspabi_slli                             
-00009560  EUSCI_A_UART_queryStatusFlags             
-00009568  EUSCI_B_SPI_receiveData                   
-00009570  EUSCI_B_SPI_transmitData                  
-00009578  EUSCI_A_UART_clearInterrupt               
-0000957e  EUSCI_A_UART_enable                       
-00009584  EUSCI_B_SPI_clearInterrupt                
-0000958a  EUSCI_B_SPI_enable                        
-00009590  EUSCI_B_SPI_enableInterrupt               
-00009596  PMM_unlockLPM5                            
-0000959c  C$$EXIT                                   
-0000959c  abort                                     
-000095a2  _system_pre_init                          
-000095a6  _system_post_cinit                        
-000095a8  EUSCI_A0_ISR                              
-000095f4  EUSCI_A1_ISR                              
-00009632  _c_int00_noargs                           
-0000964e  __TI_ISR_TRAP                             
+0000807e  __TI_Handler_Table_Base                   
+0000808a  __TI_Handler_Table_Limit                  
+00008090  __TI_CINIT_Base                           
+000080a0  __TI_CINIT_Limit                          
+00008162  packetInitValue                           
+000081ca  init_lora                                 
+00008324  lora_transmit_data_p2p                    
+0000844c  main                                      
+0000854c  CS_initClockSignal                        
+0000863a  __TI_decompress_lzss                      
+00008728  init_spi                                  
+0000880c  init_BLE                                  
+000088da  CS_initFLL                                
+000089a4  lora_wake_up                              
+00008b04  buffer_to_hex_string                      
+00008ba4  EUSCI_A_UART_init                         
+00008cc4  init_gpio                                 
+00008d4a  lora_command                              
+00008dcc  read_sensor_data                          
+00008ec8  init_ble_uart                             
+00008f40  init_lora_uart                            
+00008fb8  __TI_auto_init_nobinit_nopinit_hold_wdt   
+00009022  __mspabi_divul                            
+00009022  __mspabi_remul                            
+0000907a  EUSCI_B_SPI_initMaster                    
+000090ca  setup                                     
+0000911a  GPIO_setAsPeripheralModuleFunctionInputPin
+0000915a  __memcpy_far                              
+0000919a  __mspabi_divli                            
+0000919a  __mspabi_remli                            
+000091da  __TI_zero_init_nomemset                   
+00009218  __TI_decompress_none                      
+00009254  CS_initFLLSettle                          
+0000928a  BLE_transmit_data                         
+000092ba  read_dipswitch_setting                    
+000092ea  find_pattern                              
+00009318  __mspabi_divi                             
+00009318  __mspabi_remi                             
+00009344  buffer_compare                            
+0000936c  lora_sleep                                
+00009394  GPIO_setAsInputPinWithPullUpResistor      
+000093ba  __mspabi_mpyl_f5hw                        
+000093de  GPIO_setAsInputPin                        
+00009400  GPIO_setAsOutputPin                       
+0000941e  sensor_data_ready                         
+0000943a  CS_getSMCLK                               
+00009454  EUSCI_A_UART_enableInterrupt              
+0000946e  GPIO_getInputPinValue                     
+00009488  GPIO_setOutputHighOnPin                   
+0000949e  GPIO_setOutputLowOnPin                    
+000094b4  GPIO_toggleOutputOnPin                    
+000094ca  WDT_A_hold                                
+000094e0  clear_buffer                              
+000094f6  clear_lora_rx_buffer                      
+0000950c  __mspabi_divu                             
+0000950c  __mspabi_remu                             
+00009522  EUSCI_A_UART_receiveData                  
+00009536  EUSCI_A_UART_transmitData                 
+0000954a  memcpy                                    
+0000955c  EUSCI_B_SPI_isBusy                        
+00009566  init_uart                                 
+00009570  __mspabi_slli                             
+0000957a  EUSCI_A_UART_queryStatusFlags             
+00009582  EUSCI_B_SPI_receiveData                   
+0000958a  EUSCI_B_SPI_transmitData                  
+00009592  EUSCI_A_UART_clearInterrupt               
+00009598  EUSCI_A_UART_enable                       
+0000959e  EUSCI_B_SPI_clearInterrupt                
+000095a4  EUSCI_B_SPI_enable                        
+000095aa  EUSCI_B_SPI_enableInterrupt               
+000095b0  PMM_unlockLPM5                            
+000095b6  C$$EXIT                                   
+000095b6  abort                                     
+000095bc  _system_pre_init                          
+000095c0  _system_post_cinit                        
+000095c2  EUSCI_A0_ISR                              
+0000960e  EUSCI_A1_ISR                              
+00009656  _c_int00_noargs                           
+00009672  __TI_ISR_TRAP                             
 0000ffce  __TI_int22                                
 0000ffd0  __TI_int23                                
 0000ffd2  __TI_int24                                
@@ -2561,4 +2559,4 @@ ffffffff  __TI_prof_data_size
 ffffffff  __TI_prof_data_start                      
 ffffffff  __c_args__                                
 
-[1076 symbols]
+[1075 symbols]

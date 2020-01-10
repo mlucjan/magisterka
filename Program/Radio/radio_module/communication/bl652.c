@@ -30,35 +30,41 @@ uint8_t find_pattern(uint8_t* searched_buffer, const uint8_t* pattern,
 
 void init_BLE(){
     rxCompletedBLE = 0;
-
-    uint8_t dipsw = read_dipswitch_setting();
-    switch(dipsw){
-    case NONE_SELECTED:
-        GPIO_setOutputHighOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
-        while(dipsw == NONE_SELECTED){
-            dipsw = read_dipswitch_setting();
-        }
-        GPIO_setOutputLowOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
-        break;
-    case BOTH_SELECTED:
-    case BLE_SELECTED:
-        __enable_interrupt();
-        while(!BLEConnected){
-            GPIO_toggleOutputOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
-            if(rxCompletedBLE){
-                if((find_pattern(rxBufBLE, connectPattern, 7, 24) == 0) || (find_pattern(rxBufBLE, connectPattern, 7, 1) == 0)){
-                    BLEConnected = 1;
-                    rxCompletedBLE = 0;
-                    GPIO_setOutputLowOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
-                }
+    uint8_t initComplete = 0;
+    while(!initComplete){
+        uint8_t dipsw = read_dipswitch_setting();
+        switch(dipsw){
+        case NONE_SELECTED:
+            GPIO_setOutputHighOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
+            while(dipsw == NONE_SELECTED){
+                dipsw = read_dipswitch_setting();
             }
-            __delay_cycles(6000000);
+            GPIO_setOutputLowOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
+            break;
+        case BOTH_SELECTED:
+        case BLE_SELECTED:
+            __enable_interrupt();
+            do{
+                GPIO_toggleOutputOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
+                if(rxCompletedBLE){
+                    if((find_pattern(rxBufBLE, connectPattern, 7, 24) == 0) || (find_pattern(rxBufBLE, connectPattern, 7, 1) == 0)){
+                        BLEConnected = 1;
+//                        rxCompletedBLE = 0;
+                        initComplete = 1;
+                        GPIO_setOutputLowOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
+                    }
+                    if(BLEConnected) break;
+                }
+                if(read_dipswitch_setting() == NONE_SELECTED) break;
+                __delay_cycles(6000000);
+            }while(!BLEConnected);
+            break;
+        case LORA_SELECTED:
+            initComplete = 1;
+            break;
+        default:
+            break;
         }
-        break;
-    case LORA_SELECTED:
-        break;
-    default:
-        break;
     }
 }
 
@@ -89,7 +95,7 @@ void EUSCI_A1_ISR(void)
     {
         case USCI_NONE: break;
         case USCI_UART_UCRXIFG:
-
+            if(rxIndexBLE == 0) rxCompletedBLE = 0;
             rxBufBLE[rxIndexBLE] = EUSCI_A_UART_receiveData(EUSCI_A1_BASE);
             if(rxIndexBLE > 23){//1){
                 if(rxBufBLE[rxIndexBLE] == '\r'){

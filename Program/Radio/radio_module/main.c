@@ -15,7 +15,6 @@ uint8_t testArrayRx[10] = {0};
 uint8_t pin = 0; //sensor data ready pin value
 uint8_t sensRequestedByteIdx = 0;
 uint8_t dataReceived = 0; //data from sensing module received
-uint8_t rxInProgress = 0; //rx from sensing module in progress
 extern uint8_t BLEConnected; //BL652 is connected to a host
 uint8_t previousRadioChoice,currentRadioChoice = 0; //radio interface selection
 
@@ -44,6 +43,7 @@ uint8_t sensor_data_ready(){
 }
 
 void read_sensor_data(uint8_t* packet_bytearray, uint8_t packet_size_bytes){
+    clear_buffer(packet_bytearray, packet_size_bytes);
     for(i = 0; i < packet_size_bytes; i++){
       EUSCI_B_SPI_transmitData(EUSCI_B0_BASE, 0xff);
       for(timeout = 0; timeout < 100; timeout++){
@@ -53,7 +53,6 @@ void read_sensor_data(uint8_t* packet_bytearray, uint8_t packet_size_bytes){
 //              __delay_cycles(12000);
       packet_bytearray[i] = EUSCI_B_SPI_receiveData(EUSCI_B0_BASE);
       if(i == packet_size_bytes - 1){
-          rxInProgress = 0;
           dataReceived = 1;
       }
     }
@@ -95,10 +94,7 @@ void main (void)
     setup();
     while(1){
         pin = sensor_data_ready();
-        if(pin && !rxInProgress){
-            clear_buffer(testArrayRx, 10);
-
-            rxInProgress = 1;
+        if(pin){
             read_sensor_data(packet.bytearray, PACKET_SIZE_BYTES);
         }
 
@@ -122,8 +118,12 @@ void main (void)
                         lora_transmit_data_p2p(packet.bytearray, (uint8_t)sizeof(packet), 1000, 1000);
                         break;
                     case BLE_SELECTED:
-                        if(previousRadioChoice != BLE_SELECTED) lora_sleep();
+                        if(previousRadioChoice != BLE_SELECTED){
+                            lora_sleep();
+                            init_BLE();
+                        }
                         if(BLEConnected) BLE_transmit_data(packet.bytearray, (uint8_t)sizeof(packet));
+                        else init_BLE();
                         break;
                     case BOTH_SELECTED:
                         if(previousRadioChoice == BLE_SELECTED) lora_wake_up();
@@ -134,60 +134,6 @@ void main (void)
                         break;
                     }
                 }
-
-//        pin = sensor_data_ready();
-//        if(pin && !rxInProgress){
-//            clear_buffer(testArrayRx, 10);
-//////            read_sensor_data(packet.bytearray, PACKET_SIZE_BYTES);
-//            EUSCI_B_SPI_clearInterrupt(EUSCI_B0_BASE,
-//                                         EUSCI_B_SPI_RECEIVE_INTERRUPT);
-//            EUSCI_B_SPI_enableInterrupt(EUSCI_B0_BASE,
-//                                      EUSCI_B_SPI_RECEIVE_INTERRUPT);
-//            rxInProgress = 1;
-//            EUSCI_A_SPI_transmitData(EUSCI_B0_BASE, sensRequestedByteNum);
-//        }
     }
 
 }
-
-//#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-//#pragma vector=USCI_B0_VECTOR
-//__interrupt
-//#elif defined(__GNUC__)
-//__attribute__((interrupt(USCI_B0_VECTOR)))
-//#endif
-//void USCI_B0_ISR(void)
-//{
-//    switch(__even_in_range(UCB0IV, USCI_SPI_UCTXIFG))
-//    {
-//        case USCI_SPI_UCRXIFG:      // UCRXIFG
-//            __disable_interrupt();
-//            //USCI_A0 TX buffer ready?
-//            while (!EUSCI_B_SPI_getInterruptStatus(EUSCI_B0_BASE,
-//                        EUSCI_B_SPI_TRANSMIT_INTERRUPT));
-//            testArrayRx[sensRequestedByteIdx] = EUSCI_B_SPI_receiveData(EUSCI_B0_BASE);
-//            if(sensRequestedByteIdx <= 4){
-////            packet.bytearray[sensTxIndex] = EUSCI_B_SPI_receiveData(EUSCI_B0_BASE);
-//                //request next byte
-////                __delay_cycles(4000000);
-//                EUSCI_B_SPI_transmitData(EUSCI_B0_BASE, sensRequestedByteIdx);
-//            }
-//
-////            if(sensTxIndex == PACKET_SIZE_BYTES){
-//            if(sensRequestedByteIdx == 4){
-//                EUSCI_B_SPI_disableInterrupt(EUSCI_B0_BASE,
-//                                             EUSCI_B_SPI_RECEIVE_INTERRUPT);
-//                EUSCI_B_SPI_clearInterrupt(EUSCI_B0_BASE,
-//                                             EUSCI_B_SPI_RECEIVE_INTERRUPT);
-//                pin = sensor_data_ready();
-//                rxInProgress = 0;
-//                dataReceived = 1;
-//                sensRequestedByteIdx = 0;
-//            }
-//            sensRequestedByteIdx++;
-//            __enable_interrupt();
-//            break;
-//        default:
-//            break;
-//    }
-//}
