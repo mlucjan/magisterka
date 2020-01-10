@@ -8,10 +8,7 @@
 #ifndef COMMUNICATION_RN2483_H_
 #define COMMUNICATION_RN2483_H_
 
-//#include <stdint.h>
 #include "driverlib.h"
-#include "mcu_config/peripherals.h"
-//#include <stdlib.h>
 
 #define LORA_RX_BUFFER_SIZE 60
 #define MAX_PAYLOAD_SIZE 255

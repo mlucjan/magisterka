@@ -14,6 +14,7 @@ uint8_t rxBufBLE[BLE_BUFFER_SIZE] = {0};
 uint8_t rxIndexBLE = 0;
 uint8_t rxCompletedBLE = 0;
 uint8_t BLEConnected = 0;
+uint16_t seqNumber = 0;
 //constants
 const uint8_t* connectPattern = "CONNECT";
 
@@ -69,6 +70,11 @@ void init_BLE(){
 }
 
 void BLE_transmit_data(uint8_t* payload, uint8_t payload_size){
+    EUSCI_A_UART_transmitData(EUSCI_A1_BASE, (uint8_t)((seqNumber & 0xff00) >> 8));
+    while(EUSCI_A_UART_queryStatusFlags(EUSCI_A1_BASE, EUSCI_A_UART_BUSY)){
+                ;
+            }
+    EUSCI_A_UART_transmitData(EUSCI_A1_BASE, (uint8_t)(seqNumber & 0x00ff));
     uint8_t i = 0;
     for(i = 0; i < payload_size; i++){
         while(EUSCI_A_UART_queryStatusFlags(EUSCI_A1_BASE, EUSCI_A_UART_BUSY)){
@@ -76,6 +82,7 @@ void BLE_transmit_data(uint8_t* payload, uint8_t payload_size){
         }
         EUSCI_A_UART_transmitData(EUSCI_A1_BASE, payload[i]);
     }
+    seqNumber++;
 }
 
 //******************************************************************************

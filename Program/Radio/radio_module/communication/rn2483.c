@@ -6,7 +6,7 @@
  */
 #include "rn2483.h"
 #include "Board.h"
-
+#include "mcu_config/peripherals.h"
 //RN2483 response strings
 const uint8_t* resp_ok = "ok\r\n";
 const uint8_t* resp_invalid_param = "invalid_param\r\n";
@@ -105,9 +105,9 @@ void lora_command(uint8_t* data, const uint8_t* expected_response, uint16_t resp
 
 void init_lora(){
     //RN2483 reset
-    GPIO_setOutputLowOnPin(GPIO_PORT_P3, GPIO_PIN7);
+    GPIO_setOutputLowOnPin(GPIO_PORT_LORA_RESET, GPIO_PIN_LORA_RESET);
     __delay_cycles(320); //hold for 20us
-    GPIO_setOutputHighOnPin(GPIO_PORT_P3, GPIO_PIN7);
+    GPIO_setOutputHighOnPin(GPIO_PORT_LORA_RESET, GPIO_PIN_LORA_RESET);
 
     //Wait for RN2483 to wake up
     __delay_cycles(4000000);

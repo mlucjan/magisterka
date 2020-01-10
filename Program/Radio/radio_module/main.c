@@ -1,63 +1,13 @@
-//#include "driverlib.h"
-//#include "communication/sensing_module.h"
+#include "communication/sensing_module_comm.h"
 #include "mcu_config/peripherals.h"
-#include "communication/rn2483.h"
-#include "communication/bl652.h"
+#include "communication/radio_comm.h"
 #include "communication/data_packet.h"
-//#include <stdlib.h>
-#include "Board.h"
 
 //sensor data buffer
 dataPacket packet;
-uint8_t testArrayRx[10] = {0};
 
 //execution state flags
 uint8_t pin = 0; //sensor data ready pin value
-uint8_t sensRequestedByteIdx = 0;
-uint8_t dataReceived = 0; //data from sensing module received
-extern uint8_t BLEConnected; //BL652 is connected to a host
-uint8_t previousRadioChoice,currentRadioChoice = 0; //radio interface selection
-
-
-int i,j = 0;
-
-int timeout = 0;
-//uint8_t testArrayBLE[5] = {0x31, 0x32, 0x33, 0x34, 0x35};
-
-void clear_buffer(uint8_t* buffer, uint8_t size){
-    uint8_t index = 0;
-    for(index = 0; index < size; index++){
-        buffer[i] = 0;
-    }
-}
-uint8_t sensor_data_ready(){
-    uint8_t pin = GPIO_getInputPinValue(GPIO_PORT_P1, GPIO_PIN0);
-    if(pin == GPIO_INPUT_PIN_HIGH){
-        i = 0;
-        return 1;
-    }
-    else{
-        i = 0;
-        return 0;
-    }
-}
-
-void read_sensor_data(uint8_t* packet_bytearray, uint8_t packet_size_bytes){
-    clear_buffer(packet_bytearray, packet_size_bytes);
-    for(i = 0; i < packet_size_bytes; i++){
-      EUSCI_B_SPI_transmitData(EUSCI_B0_BASE, 0xff);
-      for(timeout = 0; timeout < 100; timeout++){
-          if(!EUSCI_B_SPI_isBusy(EUSCI_B0_BASE)) break;
-          __delay_cycles(120);
-      }
-//              __delay_cycles(12000);
-      packet_bytearray[i] = EUSCI_B_SPI_receiveData(EUSCI_B0_BASE);
-      if(i == packet_size_bytes - 1){
-          dataReceived = 1;
-      }
-    }
-}
-
 void setup(){
     //Stop watchdog timer
     WDT_A_hold(WDT_A_BASE);
@@ -80,13 +30,13 @@ void setup(){
      * previously configured port settings
      */
     PMM_unlockLPM5();
+
     init_gpio();
     init_spi();
     init_uart();
-    init_lora();
-    init_BLE();
-    currentRadioChoice = read_dipswitch_setting();
+    init_radio();
     packet = packetInitValue;
+    __delay_cycles(24000000);
 }
 
 void main (void)
@@ -96,44 +46,9 @@ void main (void)
         pin = sensor_data_ready();
         if(pin){
             read_sensor_data(packet.bytearray, PACKET_SIZE_BYTES);
+            if(packet.lux == 0) continue;
+            send_data_radio(packet.bytearray, PACKET_SIZE_BYTES);
         }
-
-        if(dataReceived){
-                    //send the packet through radio
-                    dataReceived = 0;
-//                    __delay_cycles(16000000);
-                    //check which interface should be used
-                    previousRadioChoice = currentRadioChoice;
-                    currentRadioChoice = read_dipswitch_setting();
-                    switch(currentRadioChoice){
-                    case NONE_SELECTED:
-                        GPIO_setOutputHighOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
-                        while(currentRadioChoice == NONE_SELECTED){
-                            currentRadioChoice = read_dipswitch_setting();
-                        }
-                        GPIO_setOutputLowOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED);
-                        break;
-                    case LORA_SELECTED:
-                        if(previousRadioChoice == BLE_SELECTED) lora_wake_up();
-                        lora_transmit_data_p2p(packet.bytearray, (uint8_t)sizeof(packet), 1000, 1000);
-                        break;
-                    case BLE_SELECTED:
-                        if(previousRadioChoice != BLE_SELECTED){
-                            lora_sleep();
-                            init_BLE();
-                        }
-                        if(BLEConnected) BLE_transmit_data(packet.bytearray, (uint8_t)sizeof(packet));
-                        else init_BLE();
-                        break;
-                    case BOTH_SELECTED:
-                        if(previousRadioChoice == BLE_SELECTED) lora_wake_up();
-                        lora_transmit_data_p2p(packet.bytearray, (uint8_t)sizeof(packet), 1000, 1000);
-                        if(BLEConnected) BLE_transmit_data(packet.bytearray, (uint8_t)sizeof(packet));
-                        break;
-                    default:
-                        break;
-                    }
-                }
     }
 
 }

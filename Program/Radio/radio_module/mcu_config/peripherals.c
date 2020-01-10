@@ -10,30 +10,30 @@
 
 void init_gpio(){
     //LED pins
-    GPIO_setAsOutputPin(GPIO_PORT_P5, GPIO_PIN0 + GPIO_PIN1);
-    GPIO_setOutputLowOnPin(GPIO_PORT_P5, GPIO_PIN0 + GPIO_PIN1);
+    GPIO_setAsOutputPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED + GPIO_PIN_OK_LED);
+    GPIO_setOutputLowOnPin(GPIO_PORT_LED, GPIO_PIN_ERR_LED + GPIO_PIN_OK_LED);
 
     //BQ24070 status pins
-    GPIO_setAsOutputPin(GPIO_PORT_P3, GPIO_PIN1 + GPIO_PIN2 + GPIO_PIN3);
-    GPIO_setOutputLowOnPin(GPIO_PORT_P3, GPIO_PIN1 + GPIO_PIN2 + GPIO_PIN3);
+    GPIO_setAsOutputPin(GPIO_PORT_BQ, GPIO_PIN_BQ_STAT1 + GPIO_PIN_BQ_STAT1 + GPIO_PIN_BQ_STAT1);
+    GPIO_setOutputLowOnPin(GPIO_PORT_BQ, GPIO_PIN_BQ_STAT1 + GPIO_PIN_BQ_STAT1 + GPIO_PIN_BQ_STAT1);
 
     //radio module selection switch
-    GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P3, GPIO_PIN4 + GPIO_PIN5);
+    GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_RADIO_SEL, GPIO_PIN_LORA_SEL + GPIO_PIN_BLE_SEL);
 
     //LoRa reset
-    GPIO_setAsOutputPin(GPIO_PORT_P3, GPIO_PIN7);
-    GPIO_setOutputLowOnPin(GPIO_PORT_P3, GPIO_PIN7);
+    GPIO_setAsOutputPin(GPIO_PORT_LORA_RESET, GPIO_PIN_LORA_RESET);
+    GPIO_setOutputLowOnPin(GPIO_PORT_LORA_RESET, GPIO_PIN_LORA_RESET);
 
     //BT reset
-    GPIO_setAsOutputPin(GPIO_PORT_P6, GPIO_PIN0);
-    GPIO_setOutputHighOnPin(GPIO_PORT_P6, GPIO_PIN0);
+    GPIO_setAsOutputPin(GPIO_PORT_BLE_RESET, GPIO_PIN_BLE_RESET);
+    GPIO_setOutputHighOnPin(GPIO_PORT_BLE_RESET, GPIO_PIN_BLE_RESET);
 
     //LoRa RTS/CTS
-    GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN4 + GPIO_PIN5);
-    GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN4 + GPIO_PIN5);
+    GPIO_setAsOutputPin(GPIO_PORT_LORA_UART, GPIO_PIN_LORA_CTS + GPIO_PIN_LORA_RTS);
+    GPIO_setOutputLowOnPin(GPIO_PORT_LORA_UART, GPIO_PIN_LORA_CTS + GPIO_PIN_LORA_RTS);
 
     //Sensing module SPI STE pin
-    GPIO_setAsInputPin(GPIO_PORT_P1, GPIO_PIN0);
+    GPIO_setAsInputPin(GPIO_PORT_SENS, GPIO_PIN_SENS_DATA_RDY);
 
     //BT RTS/CTS
 //    GPIO_setAsOutputPin(GPIO_PORT_P4, GPIO_PIN3 + GPIO_PIN2);
@@ -44,8 +44,8 @@ void init_gpio(){
 void init_spi(){
     //set sensor module communication pins to SPI mode
     GPIO_setAsPeripheralModuleFunctionInputPin(
-            GPIO_PORT_P1,
-            GPIO_PIN1 + GPIO_PIN2 + GPIO_PIN3,
+            GPIO_PORT_SENS,
+            GPIO_PIN_SENS_CLK + GPIO_PIN_SENS_MOSI + GPIO_PIN_SENS_MISO,
             GPIO_PRIMARY_MODULE_FUNCTION
         );
 
@@ -74,8 +74,8 @@ void init_spi(){
 
     //set external communication pins to SPI mode
     GPIO_setAsPeripheralModuleFunctionInputPin(
-            GPIO_PORT_P4,
-            GPIO_PIN4 + GPIO_PIN5 + GPIO_PIN6 + GPIO_PIN7,
+            GPIO_PORT_EXT_SPI,
+            GPIO_PIN_EXT_SPI_CLK + GPIO_PIN_EXT_SPI_MOSI + GPIO_PIN_EXT_SPI_MISO,
             GPIO_PRIMARY_MODULE_FUNCTION
         );
 
@@ -109,8 +109,8 @@ void init_lora_uart(){
     //LoRa UART
     //Configure UART pins
     GPIO_setAsPeripheralModuleFunctionInputPin(
-        GPIO_PORT_P1,
-        GPIO_PIN6 + GPIO_PIN7,
+        GPIO_PORT_LORA_UART,
+        GPIO_PIN_LORA_RX + GPIO_PIN_LORA_TX,
         GPIO_PRIMARY_MODULE_FUNCTION
     );
 
@@ -145,8 +145,8 @@ void init_ble_uart(){
     //BLE UART
     //Configure UART pins
     GPIO_setAsPeripheralModuleFunctionInputPin(
-        GPIO_PORT_P4,
-        GPIO_PIN2 + GPIO_PIN3,
+        GPIO_PORT_BLE_UART,
+        GPIO_PIN_BLE_RX + GPIO_PIN_BLE_TX,
         GPIO_PRIMARY_MODULE_FUNCTION
     );
 

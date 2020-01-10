@@ -13,7 +13,7 @@ enum measurementState{
     DONE
 };
 
-#define MAX_MIC_TIMER_OVERFLOWS 10 //12MHz clock + divider(2) -> timer overflows in ~11ms
+#define MAX_MIC_TIMER_OVERFLOWS 200 //12MHz clock + divider(2) -> timer overflows in ~11ms -> measurement cycle = 2,2s
 
 void init_mic();
 uint8_t get_mic_status();

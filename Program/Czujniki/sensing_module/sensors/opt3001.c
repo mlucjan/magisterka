@@ -48,7 +48,6 @@ void opt3001_register_write(uint8_t reg_address, uint16_t data){
 
 float opt3001_get_lux_result(){
     resultRegister result = { .value = {opt3001_register_read(RESULT_REG_ADDRESS)} };
-//    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN7);
     return 0.01 * (float)(1 << result.exponent) * (float)result.fractResult; //formula from the datasheet - lux = 0.01 * 2^(exponent) * fract
 }
 

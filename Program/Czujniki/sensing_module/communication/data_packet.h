@@ -15,7 +15,6 @@
 typedef union{
     uint8_t bytearray[PACKET_SIZE_BYTES];
     struct{
-//        uint8_t packetSizeBytes;
         uint32_t micMax;
         uint32_t micMin;
         float lux;

@@ -23,8 +23,6 @@ void init_mic(){
     //start mic measurement
     Timer_A_initContinuousMode(TIMER_A1_BASE, &param);
     SD24_B_startConverterConversion(SD24_BASE, 0);
-
-//    GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN7);
 }
 
 uint8_t get_mic_status(){
@@ -39,7 +37,6 @@ micMeasResult get_mic_result(){
     micMeasReady = 0x00;
     measResult.maxResult = 0;
     measResult.minResult = 0x00FFFFFF;
-//    GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN7);
     Timer_A_startCounter(TIMER_A1_BASE, TIMER_A_CONTINUOUS_MODE);
     SD24_B_startConverterConversion(SD24_BASE, 0);
     return returnValue;
@@ -72,7 +69,6 @@ void TIMER1_A1_ISR (void)
                                                     // overflow
             timerOverflowCounter++; //odmierzanie czasu trwania cyklu probkowania
             if(timerOverflowCounter >= MAX_MIC_TIMER_OVERFLOWS){ //zatrzymaj, jesli przekroczyl zadana wartosc
-//                GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN7);
                 SD24_B_stopConverterConversion(SD24_BASE, 0);
                 timerOverflowCounter = 0;
                 micMeasReady = 0x01;

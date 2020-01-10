@@ -10,7 +10,7 @@
 
 #define BLE_BUFFER_SIZE 70
 
-#include <stdint.h>
+#include "driverlib.h"
 uint8_t find_pattern(uint8_t* searched_buffer, const uint8_t* pattern,
                        uint8_t pattern_length, uint8_t start_index);
 void init_BLE();
