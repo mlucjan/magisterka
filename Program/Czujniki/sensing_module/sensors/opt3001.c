@@ -10,9 +10,12 @@ uint8_t txStepCtr = 0, rxStepCtr = 0;
 uint8_t txDataBytes[2]; //all transmitted data is 16 bits long
 uint8_t lastTransactionType = 1, lastRegAddr = 0, currRegAddr;
 uint8_t rxData[2]; //received data buffer
+uint8_t nackflag = 0x00;
 
 uint16_t opt3001_register_read(uint8_t reg_address){
     rxStepCtr = 0;
+    txStepCtr = 0;
+    EUSCI_B_I2C_clearInterrupt(EUSCI_B0_BASE, EUSCI_B_I2C_TRANSMIT_INTERRUPT0 | EUSCI_B_I2C_RECEIVE_INTERRUPT0);
     currRegAddr = reg_address;
     if(lastTransactionType != REGISTER_READ || reg_address != lastRegAddr){
         lastTransactionType = REGISTER_READ;
@@ -24,7 +27,6 @@ uint16_t opt3001_register_read(uint8_t reg_address){
         __delay_cycles(1000);
     }
     EUSCI_B_I2C_masterReceiveStart(EUSCI_B0_BASE);
-//    while(rxStepCtr != 2);
     int i = 0;
     for(i=0; i<10; i++){
         if(rxStepCtr == 2){
@@ -33,8 +35,6 @@ uint16_t opt3001_register_read(uint8_t reg_address){
         __delay_cycles(12000);
     }
     return 0;
-
-//    return (uint16_t)rxData[0]<<8 | rxData[1];
 }
 
 void opt3001_register_write(uint8_t reg_address, uint16_t data){
@@ -128,7 +128,8 @@ void USCIB0_ISR(void)
             break;
         case USCI_I2C_UCNACKIFG:    // NAK received (master only)
             //resend start if NACK
-            EUSCI_B_I2C_masterSendStart(EUSCI_B0_BASE);
+            //EUSCI_B_I2C_masterSendStart(EUSCI_B0_BASE);
+//            nackflag = 0x01;
             break;
         case USCI_I2C_UCSTTIFG:     // START condition detected with own address (slave mode only)
             break;
@@ -150,26 +151,19 @@ void USCIB0_ISR(void)
         case USCI_I2C_UCRXIFG0:     // RXIFG0
             rxData[rxStepCtr] = EUSCI_B_I2C_masterReceiveMultiByteNext(EUSCI_B0_BASE);
             rxStepCtr++;
-            if(rxStepCtr == 2) EUSCI_B_I2C_masterReceiveMultiByteStop(EUSCI_B0_BASE);
-
-//            if(rxStepCtr == 0){
-//                rxData[0] = EUSCI_B_I2C_masterReceiveMultiByteNext(EUSCI_B0_BASE);
-//                rxStepCtr = 1;
-//            }
-//            else if(rxStepCtr == 1){
-//                EUSCI_B_I2C_masterSendMultiByteFinish(EUSCI_B0_BASE, (uint_8t)txDataByte); //transmit LSB byte and STOP
-//                rxStepCtr = 2;
-//            }
+            if(rxStepCtr == 1) {
+                EUSCI_B_I2C_masterReceiveMultiByteStop(EUSCI_B0_BASE);
+            }
             break;
 
         case USCI_I2C_UCTXIFG0:     // TXIFG0
-            if(txStepCtr == 0){
-                EUSCI_B_I2C_masterSendMultiByteNext(EUSCI_B0_BASE, txDataBytes[txStepCtr]); //transmit MSB byte of data
+            if(txStepCtr <= 1){
+                EUSCI_B_I2C_masterSendMultiByteNext(EUSCI_B0_BASE, txDataBytes[txStepCtr]);
+                txStepCtr++;
             }
-            else if(txStepCtr == 1){
-                EUSCI_B_I2C_masterSendMultiByteFinish(EUSCI_B0_BASE, txDataBytes[txStepCtr]); //transmit LSB byte of data and STOP
+            else{
+                EUSCI_B_I2C_masterSendMultiByteStop(EUSCI_B0_BASE);
             }
-            txStepCtr++;
             break;
         case USCI_I2C_UCBCNTIFG:    // Byte count limit reached (UCBxTBCNT)
             break;

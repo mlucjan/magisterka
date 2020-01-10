@@ -78,10 +78,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#include "driverlib.h"
-#include "mcu_config/clock_system.h"
 #include "bsec_integration.h"
-#include "bsec_serialized_configurations_iaq.h"
 
 /**********************************************************************************************************************/
 /* local macro definitions */
@@ -495,12 +492,11 @@ static void bme680_bsec_process_data(bsec_input_t *bsec_inputs, uint8_t num_bsec
  *
  * @return      none
  */
-void bsec_iot_loop(sleep_fct sleep, get_timestamp_us_fct get_timestamp_us, output_ready_fct output_ready,
+void bsec_iot_service(sleep_fct sleep, get_timestamp_us_fct get_timestamp_us, output_ready_fct output_ready,
                     state_save_fct state_save, uint32_t save_intvl)
 {
     /* Timestamp variables */
     int64_t time_stamp = 0;
-    int64_t time_stamp_interval_ms = 0;
     
     /* Allocate enough memory for up to BSEC_MAX_PHYSICAL_SENSOR physical inputs*/
     bsec_input_t bsec_inputs[BSEC_MAX_PHYSICAL_SENSOR];
@@ -519,245 +515,36 @@ void bsec_iot_loop(sleep_fct sleep, get_timestamp_us_fct get_timestamp_us, outpu
     
     bsec_library_return_t bsec_status = BSEC_OK;
 
-    while (1)
+    /* get the timestamp in nanoseconds before calling bsec_sensor_control() */
+    time_stamp = get_timestamp_us() * 1000;
+
+    /* Retrieve sensor settings to be used in this time instant by calling bsec_sensor_control */
+    bsec_sensor_control(time_stamp, &sensor_settings);
+
+    /* Trigger a measurement if necessary */
+    bme680_bsec_trigger_measurement(&sensor_settings, sleep);
+
+    /* Read data from last measurement */
+    num_bsec_inputs = 0;
+    bme680_bsec_read_data(time_stamp, bsec_inputs, &num_bsec_inputs, sensor_settings.process_data);
+
+    /* Time to invoke BSEC to perform the actual processing */
+    bme680_bsec_process_data(bsec_inputs, num_bsec_inputs, output_ready);
+
+    /* Increment sample counter */
+    n_samples++;
+
+    /* Retrieve and store state if the passed save_intvl */
+    if (n_samples >= save_intvl)
     {
-        /* get the timestamp in nanoseconds before calling bsec_sensor_control() */
-        time_stamp = get_timestamp_us() * 1000;
-        
-        /* Retrieve sensor settings to be used in this time instant by calling bsec_sensor_control */
-        bsec_sensor_control(time_stamp, &sensor_settings);
-        
-        /* Trigger a measurement if necessary */
-        bme680_bsec_trigger_measurement(&sensor_settings, sleep);
-        
-        /* Read data from last measurement */
-        num_bsec_inputs = 0;
-        bme680_bsec_read_data(time_stamp, bsec_inputs, &num_bsec_inputs, sensor_settings.process_data);
-        
-        /* Time to invoke BSEC to perform the actual processing */
-        bme680_bsec_process_data(bsec_inputs, num_bsec_inputs, output_ready);
-        
-        /* Increment sample counter */
-        n_samples++;
-        
-        /* Retrieve and store state if the passed save_intvl */
-        if (n_samples >= save_intvl)
+        bsec_status = bsec_get_state(0, bsec_state, sizeof(bsec_state), work_buffer, sizeof(work_buffer), &bsec_state_len);
+        if (bsec_status == BSEC_OK)
         {
-            bsec_status = bsec_get_state(0, bsec_state, sizeof(bsec_state), work_buffer, sizeof(work_buffer), &bsec_state_len);
-            if (bsec_status == BSEC_OK)
-            {
-                state_save(bsec_state, bsec_state_len);
-            }
-            n_samples = 0;
+            state_save(bsec_state, bsec_state_len);
         }
-        
-        
-        /* Compute how long we can sleep until we need to call bsec_sensor_control() next */
-        /* Time_stamp is converted from microseconds to nanoseconds first and then the difference to milliseconds */
-        time_stamp_interval_ms = (sensor_settings.next_call - get_timestamp_us() * 1000) / 1000000;
-        if (time_stamp_interval_ms > 0)
-        {
-            sleep((uint32_t)time_stamp_interval_ms);
-        }
+        n_samples = 0;
     }
 }
 
 /*! @}*/
-
-/////////////////// Oryginalnie z pliku bsec_iot_example.c
-
-///Tymczasowy workaround na timestampa
-int64_t system_current_time = 0;
-
-/**********************************************************************************************************************/
-/* functions */
-/**********************************************************************************************************************/
-
-/*!
- * @brief           Write operation in either I2C or SPI
- *
- * param[in]        dev_addr        I2C or SPI device address
- * param[in]        reg_addr        register address
- * param[in]        reg_data_ptr    pointer to the data to be written
- * param[in]        data_len        number of bytes to be written
- *
- * @return          result of the bus communication function
- */
-int8_t bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data_ptr, uint16_t data_len)
-{
-    // ...
-    // Please insert system specific function to write to the bus where BME680 is connected
-    // ...
-
-    int i,j;
-    //Set register address to start writing to
-    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN6);
-    EUSCI_A_SPI_transmitData(EUSCI_A2_BASE, reg_addr);
-    for(j=0; j < 10; j++){
-        if(!EUSCI_A_SPI_isBusy(EUSCI_A2_BASE)) break;
-        __delay_cycles(120);
-    }
-    //Transmit data
-    for(i=0; i < data_len; i++){
-        EUSCI_A_SPI_transmitData(EUSCI_A2_BASE, reg_data_ptr[i]);
-
-        for(j=0; j < 10; j++){
-            if(!EUSCI_A_SPI_isBusy(EUSCI_A2_BASE)) break;
-            __delay_cycles(120);
-        }
-    }
-    return 0;
-}
-
-/*!
- * @brief           Read operation in either I2C or SPI
- *
- * param[in]        dev_addr        I2C or SPI device address
- * param[in]        reg_addr        register address
- * param[out]       reg_data_ptr    pointer to the memory to be used to store the read data
- * param[in]        data_len        number of bytes to be read
- *
- * @return          result of the bus communication function
- */
-int8_t bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data_ptr, uint16_t data_len)
-{
-    // ...
-    // Please insert system specific function to read from bus where BME680 is connected
-    // ...
-
-    int i, j;
-    //Set register address to start reading from
-    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN6);
-    EUSCI_A_SPI_transmitData(EUSCI_A2_BASE, reg_addr);
-    GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN6);
-
-    __delay_cycles(6000); //0,5ms delay
-
-    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN6);
-    //Transmit data
-    for(i=0; i < data_len; i++){
-        EUSCI_A_SPI_transmitData(EUSCI_A2_BASE, 0xff);
-
-        for(j=0; j < 10; j++){
-            if(!EUSCI_A_SPI_isBusy(EUSCI_A2_BASE)) break;
-            __delay_cycles(120);
-        }
-
-        reg_data_ptr[i] = EUSCI_A_SPI_receiveData(EUSCI_A2_BASE);
-    }
-    return 0;
-}
-
-/*!
- * @brief           System specific implementation of sleep function
- *
- * @param[in]       t_ms    time in milliseconds
- *
- * @return          none
- */
-void sleep(uint32_t t_ms)
-{
-    // ...
-    // Please insert system specific function sleep or delay for t_ms milliseconds
-    // ...
-    while(t_ms--){
-        __delay_cycles(UCS_MCLK_DESIRED_FREQUENCY_IN_KHZ);
-    }
-}
-
-/*!
- * @brief           Capture the system time in microseconds
- *
- * @return          system_current_time    current system timestamp in microseconds
- */
-int64_t get_timestamp_us()
-{
-    //int64_t system_current_time = 0; ----Przeniesione do globalnej zmiennej
-    // ...
-    // Please insert system specific function to retrieve a timestamp (in microseconds)
-    // ...
-    system_current_time += 1000;
-    return system_current_time;
-}
-
-/*!
- * @brief           Handling of the ready outputs
- *
- * @param[in]       timestamp       time in nanoseconds
- * @param[in]       iaq             IAQ signal
- * @param[in]       iaq_accuracy    accuracy of IAQ signal
- * @param[in]       temperature     temperature signal
- * @param[in]       humidity        humidity signal
- * @param[in]       pressure        pressure signal
- * @param[in]       raw_temperature raw temperature signal
- * @param[in]       raw_humidity    raw humidity signal
- * @param[in]       gas             raw gas sensor signal
- * @param[in]       bsec_status     value returned by the bsec_do_steps() call
- *
- * @return          none
- */
-void output_ready(int64_t timestamp, float iaq, uint8_t iaq_accuracy, float temperature, float humidity,
-     float pressure, float raw_temperature, float raw_humidity, float gas, bsec_library_return_t bsec_status,
-     float static_iaq, float co2_equivalent, float breath_voc_equivalent)
-{
-    // ...
-    // Please insert system specific code to further process or display the BSEC outputs
-    // ...
-}
-
-/*!
- * @brief           Load previous library state from non-volatile memory
- *
- * @param[in,out]   state_buffer    buffer to hold the loaded state string
- * @param[in]       n_buffer        size of the allocated state buffer
- *
- * @return          number of bytes copied to state_buffer
- */
-uint32_t state_load(uint8_t *state_buffer, uint32_t n_buffer)
-{
-    // ...
-    // Load a previous library state from non-volatile memory, if available.
-    //
-    // Return zero if loading was unsuccessful or no state was available,
-    // otherwise return length of loaded state string.
-    // ...
-    return 0;
-}
-
-/*!
- * @brief           Save library state to non-volatile memory
- *
- * @param[in]       state_buffer    buffer holding the state to be stored
- * @param[in]       length          length of the state string to be stored
- *
- * @return          none
- */
-void state_save(const uint8_t *state_buffer, uint32_t length)
-{
-    // ...
-    // Save the string some form of non-volatile memory, if possible.
-    // ...
-}
-
-/*!
- * @brief           Load library config from non-volatile memory
- *
- * @param[in,out]   config_buffer    buffer to hold the loaded state string
- * @param[in]       n_buffer        size of the allocated state buffer
- *
- * @return          number of bytes copied to config_buffer
- */
-uint32_t config_load(uint8_t *config_buffer, uint32_t n_buffer)
-{
-    // ...
-    // Load a library config from non-volatile memory, if available.
-    //
-    // Return zero if loading was unsuccessful or no config was available,
-    // otherwise return length of loaded config string.
-    // ...
-
-    //wczytywanie z bsec_serialized_configurations_iaq.h
-    memcpy(config_buffer, bsec_config_iaq, sizeof(bsec_config_iaq));
-    return sizeof(bsec_config_iaq);
-}
 

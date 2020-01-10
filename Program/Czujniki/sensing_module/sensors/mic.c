@@ -23,7 +23,6 @@ void init_mic(){
     //start mic measurement
     Timer_A_initContinuousMode(TIMER_A1_BASE, &param);
     SD24_B_startConverterConversion(SD24_BASE, 0);
-
 }
 
 uint8_t get_mic_status(){
@@ -45,7 +44,7 @@ micMeasResult get_mic_result(){
 
 //******************************************************************************
 //
-//This is the TIMER1_A3 interrupt vector service routine. (mic timer)
+//This is the TIMER1_A1 interrupt vector service routine. (mic timer)
 //
 //******************************************************************************
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
@@ -69,7 +68,7 @@ void TIMER1_A1_ISR (void)
         case 14:
                                                     // overflow
             timerOverflowCounter++; //odmierzanie czasu trwania cyklu probkowania
-            if(timerOverflowCounter >= MAX_TIMER_OVERFLOWS){ //zatrzymaj, jesli przekroczyl zadana wartosc
+            if(timerOverflowCounter >= MAX_MIC_TIMER_OVERFLOWS){ //zatrzymaj, jesli przekroczyl zadana wartosc
                 SD24_B_stopConverterConversion(SD24_BASE, 0);
                 timerOverflowCounter = 0;
                 micMeasReady = 0x01;

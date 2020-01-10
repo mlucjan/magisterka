@@ -10,7 +10,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.MSP430F6726.ccxml.TI MSP430 USB1/MSP430" value="${build_artifact:sensing_module}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.MSP430F6726.ccxml.TI MSP430 USB1/MSP430" value="sensing_module"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:sensing_module}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.MSP430F6726.ccxml.TI MSP430 USB1/MSP430" value="/Users/michal/OneDrive - Politechnika Warszawska/Szkoła/MGR/Magisterka/Program/sensing_module/Debug/sensing_module.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.MSP430F6726.ccxml.TI MSP430 USB1/MSP430" value="/Users/michal/Library/Mobile Documents/com~apple~CloudDocs/Szkoła/MGR/Magisterka/Program/Czujniki/sensing_module/Debug/sensing_module.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/sensing_module"/>
 </listAttribute>
