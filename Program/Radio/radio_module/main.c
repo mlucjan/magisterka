@@ -22,7 +22,7 @@ uint8_t previousRadioChoice,currentRadioChoice = 0; //radio interface selection
 
 int i,j = 0;
 
-int testByteCounter, timeout = 0;
+int timeout = 0;
 //uint8_t testArrayBLE[5] = {0x31, 0x32, 0x33, 0x34, 0x35};
 
 void clear_buffer(uint8_t* buffer, uint8_t size){
@@ -45,14 +45,17 @@ uint8_t sensor_data_ready(){
 
 void read_sensor_data(uint8_t* packet_bytearray, uint8_t packet_size_bytes){
     for(i = 0; i < packet_size_bytes; i++){
-        EUSCI_B_SPI_transmitData(EUSCI_B0_BASE, 0xff);
-
-        for(j=0; j < 10; j++){
-            if(!EUSCI_B_SPI_isBusy(EUSCI_B0_BASE)) break;
-            __delay_cycles(160);
-        }
-
-        packet_bytearray[i] = EUSCI_B_SPI_receiveData(EUSCI_B0_BASE);
+      EUSCI_B_SPI_transmitData(EUSCI_B0_BASE, 0xff);
+      for(timeout = 0; timeout < 100; timeout++){
+          if(!EUSCI_B_SPI_isBusy(EUSCI_B0_BASE)) break;
+          __delay_cycles(120);
+      }
+//              __delay_cycles(12000);
+      packet_bytearray[i] = EUSCI_B_SPI_receiveData(EUSCI_B0_BASE);
+      if(i == packet_size_bytes - 1){
+          rxInProgress = 0;
+          dataReceived = 1;
+      }
     }
 }
 
@@ -83,7 +86,7 @@ void setup(){
     init_uart();
     init_lora();
     init_BLE();
-    previousRadioChoice = read_dipswitch_setting();
+    currentRadioChoice = read_dipswitch_setting();
     packet = packetInitValue;
 }
 
@@ -96,19 +99,7 @@ void main (void)
             clear_buffer(testArrayRx, 10);
 
             rxInProgress = 1;
-            for(testByteCounter = 0; testByteCounter < PACKET_SIZE_BYTES; testByteCounter++){
-              EUSCI_B_SPI_transmitData(EUSCI_B0_BASE, 0xff);
-              for(timeout = 0; timeout < 100; timeout++){
-                  if(!EUSCI_B_SPI_isBusy(EUSCI_B0_BASE)) break;
-                  __delay_cycles(120);
-              }
-//              __delay_cycles(12000);
-              packet.bytearray[testByteCounter] = EUSCI_B_SPI_receiveData(EUSCI_B0_BASE);
-              if(testByteCounter == PACKET_SIZE_BYTES - 1){
-                  rxInProgress = 0;
-                  dataReceived = 1;
-              }
-            }
+            read_sensor_data(packet.bytearray, PACKET_SIZE_BYTES);
         }
 
         if(dataReceived){
@@ -116,6 +107,7 @@ void main (void)
                     dataReceived = 0;
 //                    __delay_cycles(16000000);
                     //check which interface should be used
+                    previousRadioChoice = currentRadioChoice;
                     currentRadioChoice = read_dipswitch_setting();
                     switch(currentRadioChoice){
                     case NONE_SELECTED:
