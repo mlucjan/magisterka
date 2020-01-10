@@ -6,7 +6,7 @@
  */
 #include "data_packet.h"
 
-const dataPacket packetInitValue = { .packetSizeBytes = PACKET_SIZE_BYTES,
+const dataPacket packetInitValue = { //.packetSizeBytes = PACKET_SIZE_BYTES,
                       .lux = -1,
                       .iaq = -1,
                       .temperature = 999,

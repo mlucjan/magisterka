@@ -1,6 +1,7 @@
 # FIXED
 
 main.obj: ../main.c
+main.obj: ../mcu_config/peripherals.h
 main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h
 main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/inc/hw_memmap.h
 main.obj: /Applications/ti/ccs900/ccs/ccs_base/msp430/include/msp430.h
@@ -41,17 +42,15 @@ main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅ
 main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_a_spi.h
 main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/timer_b.h
 main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_spi.h
-main.obj: ../mcu_config/peripherals.h
-main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h
-main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/Board.h
 main.obj: ../communication/rn2483.h
 main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h
+main.obj: ../communication/bl652.h
 main.obj: ../communication/data_packet.h
-main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/stdlib.h
-main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/_ti_config.h
-main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/linkage.h
+main.obj: /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h
+main.obj: ../Board.h
 
 ../main.c: 
+../mcu_config/peripherals.h: 
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h: 
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/inc/hw_memmap.h: 
 /Applications/ti/ccs900/ccs/ccs_base/msp430/include/msp430.h: 
@@ -92,12 +91,9 @@ main.obj: /Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/i
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_a_spi.h: 
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/timer_b.h: 
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/eusci_b_spi.h: 
-../mcu_config/peripherals.h: 
-/Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h: 
-/Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/Board.h: 
 ../communication/rn2483.h: 
 /Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h: 
+../communication/bl652.h: 
 ../communication/data_packet.h: 
-/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/stdlib.h: 
-/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/_ti_config.h: 
-/Applications/ti/ccs900/ccs/tools/compiler/ti-cgt-msp430_18.12.3.LTS/include/linkage.h: 
+/Users/michal/Library/Mobile//\ Documents/com~apple~CloudDocs/SzkoÅa/MGR/Magisterka/Program/Radio/radio_module/driverlib/MSP430FR2xx_4xx/driverlib.h: 
+../Board.h: 

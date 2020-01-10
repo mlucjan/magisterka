@@ -5,9 +5,7 @@
  *      Author: michal
  */
 #include "rn2483.h"
-#include "mcu_config/peripherals.h"
 #include "Board.h"
-#include <stdlib.h>
 
 //RN2483 response strings
 const uint8_t* resp_ok = "ok\r\n";
@@ -54,11 +52,6 @@ void buffer_to_hex_string(uint8_t* src_buffer, uint16_t src_buffer_size,
     uint16_t i = 0;
     uint16_t last_conv_index = src_buffer_size - 1;
 
-//    if(buffer[last_conv_index] == '\n' && buffer[last_conv_index - 1] == '\r'){
-//        dest_buffer[last_conv_index] = '\n';
-//        dest_buffer[last_conv_index - 1] = '\r';
-//        last_conv_index -= 2;
-//    }
     while(i <= last_conv_index){
         nibble1 = (src_buffer[i] & 0xf0) >> 4; //(*(buffer+i) & 0xf0) >> 4;
         if(nibble1 <= 9){
@@ -110,7 +103,7 @@ void lora_command(uint8_t* data, const uint8_t* expected_response, uint16_t resp
 
 }
 
-void lora_init(){
+void init_lora(){
     //RN2483 reset
     GPIO_setOutputLowOnPin(GPIO_PORT_P3, GPIO_PIN7);
     __delay_cycles(320); //hold for 20us
@@ -118,9 +111,6 @@ void lora_init(){
 
     //Wait for RN2483 to wake up
     __delay_cycles(4000000);
-
-    //init UART module
-    init_lora_uart();
 
     //9600 autobaud detection
     EUSCI_A_UART_transmitData(EUSCI_A0_BASE, 0x00);//break condition for 9600 baud rate
@@ -152,10 +142,10 @@ void lora_init(){
         break;
     case BLE_SELECTED:
         lora_command("sys sleep 4294967296\r\n", resp_ok, 10000);
+        break;
     default:
         break;
     }
-
 }
 
 void lora_transmit_data_p2p(uint8_t* payload, uint8_t payload_size, uint16_t first_response_timeout,
@@ -236,6 +226,29 @@ void lora_transmit_data_p2p(uint8_t* payload, uint8_t payload_size, uint16_t fir
 
 }
 
+void lora_wake_up(){
+
+    //wake up sequence
+    EUSCI_A_UART_transmitData(EUSCI_A0_BASE, 0x00);//break condition for 9600 baud rate
+    EUSCI_A_UART_transmitData(EUSCI_A0_BASE, 0x55);
+
+    //set the transmission parameters
+    lora_command("radio set mod lora\r\n", resp_ok, 10000);
+    __delay_cycles(4000000);
+    lora_command("radio set freq 868000000\r\n", resp_ok, 10000);
+    __delay_cycles(4000000);
+    lora_command("radio set pwr 14\r\n", resp_ok, 10000);
+    __delay_cycles(4000000);
+    lora_command("mac pause\r\n", resp_max_mac_pause, 10000);
+    __delay_cycles(4000000);
+
+
+}
+
+void lora_sleep(){
+    lora_command("sys sleep 4294967296\r\n", resp_ok, 10000);
+    __delay_cycles(4000000);
+}
 
 //******************************************************************************
 //
@@ -254,8 +267,6 @@ void EUSCI_A0_ISR(void)
     {
         case USCI_NONE: break;
         case USCI_UART_UCRXIFG:
-//            rxdata = EUSCI_A_UART_receiveData(EUSCI_A0_BASE);
-//            EUSCI_A_UART_transmitData(EUSCI_A1_BASE, rxdata);
             rx_buf[rx_index] = EUSCI_A_UART_receiveData(EUSCI_A0_BASE);
             if(rx_index > 1){
                 if(rx_buf[rx_index] == '\n' && rx_buf[rx_index-1] == '\r'){

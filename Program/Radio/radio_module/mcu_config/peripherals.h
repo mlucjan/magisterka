@@ -7,8 +7,8 @@
 
 #ifndef PERIPHERALS_H_
 #define PERIPHERALS_H_
+//#include <stdint.h>
 #include "driverlib.h"
-#include "Board.h"
 
 //Radio module selection constants
 #define LORA_SELECTED 0x10

@@ -8,14 +8,15 @@
 #ifndef COMMUNICATION_DATA_PACKET_H_
 #define COMMUNICATION_DATA_PACKET_H_
 
-#include <stdint.h>
+//#include <stdint.h>
+#include "driverlib.h"
 
-#define PACKET_SIZE_BYTES 29
+#define PACKET_SIZE_BYTES 28
 
 typedef union{
     uint8_t bytearray[PACKET_SIZE_BYTES];
     struct{
-        uint8_t packetSizeBytes;
+//        uint8_t packetSizeBytes;
         uint32_t micMax;
         uint32_t micMin;
         float lux;

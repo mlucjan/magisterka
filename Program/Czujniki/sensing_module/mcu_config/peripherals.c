@@ -119,7 +119,7 @@ void init_bme680_spi(){
 
     EUSCI_A_SPI_clearInterrupt(EUSCI_A2_BASE,
             EUSCI_A_SPI_RECEIVE_INTERRUPT);
-//    // Enable USCI_A1 RX interrupt
+    // Enable USCI_A1 RX interrupt
 //    EUSCI_A_SPI_enableInterrupt(EUSCI_A2_BASE,
 //            EUSCI_A_SPI_RECEIVE_INTERRUPT);
 

@@ -5,6 +5,8 @@
  *      Author: michal
  */
 #include "peripherals.h"
+//#include "driverlib.h"
+#include "Board.h"
 
 void init_gpio(){
     //LED pins
@@ -24,7 +26,7 @@ void init_gpio(){
 
     //BT reset
     GPIO_setAsOutputPin(GPIO_PORT_P6, GPIO_PIN0);
-    GPIO_setOutputLowOnPin(GPIO_PORT_P6, GPIO_PIN0);
+    GPIO_setOutputHighOnPin(GPIO_PORT_P6, GPIO_PIN0);
 
     //LoRa RTS/CTS
     GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN4 + GPIO_PIN5);
@@ -51,7 +53,7 @@ void init_spi(){
     EUSCI_B_SPI_initMasterParam sens_param = {0};
     sens_param.selectClockSource = EUSCI_B_SPI_CLOCKSOURCE_SMCLK;
     sens_param.clockSourceFrequency = CS_getSMCLK();
-    sens_param.desiredSpiClock = 500000;
+    sens_param.desiredSpiClock = 250000;
     sens_param.msbFirst = EUSCI_B_SPI_MSB_FIRST;
     sens_param.clockPhase = EUSCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT;
     sens_param.clockPolarity = EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH;
@@ -65,10 +67,10 @@ void init_spi(){
             EUSCI_B_SPI_RECEIVE_INTERRUPT
             );
 
-    // Enable USCI_B0 RX interrupt
-    EUSCI_B_SPI_enableInterrupt(EUSCI_B0_BASE,
-            EUSCI_B_SPI_RECEIVE_INTERRUPT
-            );
+//    // Enable USCI_B0 RX interrupt
+//    EUSCI_B_SPI_enableInterrupt(EUSCI_B0_BASE,
+//            EUSCI_B_SPI_RECEIVE_INTERRUPT
+//            );
 
     //set external communication pins to SPI mode
     GPIO_setAsPeripheralModuleFunctionInputPin(
@@ -170,7 +172,7 @@ void init_ble_uart(){
         EUSCI_A_UART_clearInterrupt(EUSCI_A1_BASE,
             EUSCI_A_UART_RECEIVE_INTERRUPT);
 
-        // Enable USCI_A0 RX interrupt
+        // Enable USCI_A1 RX interrupt
         EUSCI_A_UART_enableInterrupt(EUSCI_A1_BASE,
             EUSCI_A_UART_RECEIVE_INTERRUPT);
 }
